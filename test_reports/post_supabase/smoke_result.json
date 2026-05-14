@@ -1,0 +1,49 @@
+{
+  "health": {
+    "status": "ok",
+    "ambient_presets": 6,
+    "voices": [
+      "echo",
+      "sage",
+      "onyx",
+      "fable",
+      "alloy",
+      "ash"
+    ]
+  },
+  "project_id": "8064cbbd-6f18-44cc-803c-6235fa2a43c7",
+  "segments_after_patch": [
+    {
+      "kind": "pause",
+      "duration": 1.5
+    },
+    {
+      "kind": "clip",
+      "duration": 3.5
+    }
+  ],
+  "render_job_id": "eabe686e-70f4-402d-9c01-d3a633d3c2ad",
+  "render_status": "completed",
+  "render_stage": "completed",
+  "render_error": null,
+  "render_progress": 1.0,
+  "render_output_asset_id": "00cb9891-86d4-4571-ae2f-7be20f1e95ed",
+  "provenance_status": 200,
+  "provenance_keys": [
+    "citations",
+    "project",
+    "rendered_at",
+    "retrieved_at",
+    "rubric",
+    "schema_version",
+    "segments"
+  ],
+  "provenance_citations": 1,
+  "renders_listing": [
+    {
+      "id": "eabe686e",
+      "status": "completed"
+    }
+  ],
+  "cleanup": "deleted"
+}

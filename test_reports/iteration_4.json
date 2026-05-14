@@ -1,0 +1,42 @@
+{
+  "summary": "End-to-end testing of cinematic render progress feature (backend stage taxonomy + queue_position + output_size_bytes; frontend inline summary + full-screen overlay). Backend pytest /app/backend/tests/test_render_progress.py — 8/8 PASSED in 111s on real Postgres + Supabase Storage + ffmpeg render. Frontend Playwright on https://repo-puller-29.preview.emergentagent.com/editor/4f976224-… — full flow PASSED: render starts → overlay opens → phase rail correctly shows past/active/pending → Escape AND Collapse both close → expand reopens → render completes through composing→encoding→uploading(\"Sending\")→finalizing(\"Sealing\")→completed(\"The film is ready.\") → terminal overlay shows View / Return buttons → past renders count incremented (3→4).",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "GET /api/render/{id}", "issue": "audio_mixing stage was not observed during the live render of the seed project (only downloading_inputs, preparing, composing, encoding, uploading, finalizing, completed surfaced). The seed project DOES have narration + ambient configured so the audio_mixing phase should emit at least once. Either renderer.py never publishes that stage label, or it transitions through too fast for a 1.5s poll. Not a bug per se — taxonomy entry exists and the UI rail correctly renders the audio_mixing dot — but worth confirming progress_cb is called inside the audio-mix step of pipeline/renderer.py."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_render_progress.py",
+    "/app/test_reports/pytest/render_progress_results.xml"
+  ],
+  "action_items": [
+    "(Optional, minor) Verify pipeline/renderer.py emits the audio_mixing stage label via progress_cb. The phase rail renders the dot fine, but in the live render the eyebrow jumped composing → encoding without showing audio_mixing as active. If audio mixing genuinely is sub-second, consider a brief artificial dwell or at least one progress_cb('audio_mixing', 0.0) call so the user can read the contemplative label."
+  ],
+  "critical_code_review_comments": [
+    "Backend: repositories.py:298 computes queue_position from current active count BEFORE inserting the new job, so the value represents 'jobs ahead of me at the moment of insert'. This is correct and matches the frontend semantics (Queue ahead = 0 means 'next up'). Verified the very-first job after a quiet period returns queue_position=0, which is what the UI expects.",
+    "Backend: storage.py — the new _do_request retry wrapper on 403+5xx is a sensible mitigation against transient Emergent storage hiccups; I did not synthetically trigger 5xx during this run but the live render uploaded a 90+s film successfully so the happy path is intact.",
+    "Frontend: RenderPanel.jsx:122-125 — `start()` opens the overlay only if `j` is truthy. If the hook silently returns null (network failure), the user gets no feedback. Consider a one-line toast/inline error in that fallback. Currently safe because /render endpoint is reliable.",
+    "Frontend: RenderProgressView.jsx:26-32 — Escape listener uses `window` + cleanup on unmount; correct. No double-binding observed when the overlay was toggled three times in the test.",
+    "Frontend: stage 'uploading' is labeled 'Sending to the vault' and 'finalizing' is labeled 'Sealing the provenance' — contemplative tone is preserved as specified in the design language. No SaaS spinners observed; only the linear progress bars and the slow color-fade transitions.",
+    "Frontend: renderStages.js stagePosition() correctly maps progress→sub-position within the active stage; the phase rail's inner bar (render-phase-bar-encoding) animated smoothly from 0→100% during the long encoding step."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_render_progress.py (NEW)"
+  ],
+  "success_rate": {
+    "backend": "100% (8/8 in test_render_progress.py)",
+    "frontend": "100% on every assertion of the spec (start, overlay open, phase rail testids, master bar, all 4 meta fields, network indicator, Escape close, Collapse close, expand reopen, terminal state, View button, Past renders increment)"
+  },
+  "test_credentials": "N/A — no auth required.",
+  "seed_data_creation": "Created 1 new completed render on project 4f976224-… (master file uploaded to Supabase Storage). Past-renders count went from 3 to 4. The backend pytest also produced 1 additional render on the same project — so the project now has ~5 historical completed renders. Manual cleanup may be desired before user demos.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Run: pytest /app/backend/tests/test_render_progress.py -v -s  (~2m, real render). The test hits the seed project 4f976224-ebeb-4477-90ef-aa05e2e52e8f which already has segments + narration + ambient configured. queue_position is computed at insert-time via repositories.py:298 — if you POST /api/projects/{id}/render twice in quick succession the dedupe logic returns the SAME job id so queue_position remains 0; that is by design (iteration_3 verified). Frontend testing must dismiss the [data-testid=onboarding-skip] overlay before clicking Render. The 'Render' tab is a plain <button> with text 'Render' (no testid); switch by clicking the button whose text exactly equals 'Render'. After clicking start-render-btn there can be a ~3s delay before the overlay mounts — wait at least 5s before asserting [data-testid=render-progress-overlay].",
+  "rca of the issue": "No bug encountered. The single mild concern is the missing audio_mixing stage label in the live render. RCA hypothesis: pipeline/renderer.py likely audio-mixes inside the same FFmpeg complex_filter pass that does the visual composing, so there is no discrete progress_cb('audio_mixing', ...) emission — the stage simply never gets surfaced. The taxonomy includes it for parity with the design spec, and the rail renders the dot, but the active highlight never lands on it. Mitigation: emit at least one progress_cb('audio_mixing', 0.0) inside renderer.py just before the FFmpeg invocation, so the rail shows that step as active for at least one poll cycle."
+}

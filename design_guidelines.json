@@ -1,0 +1,102 @@
+{
+  "project_identity": {
+    "theme": "Light Theme (Contemplative & Institutional)",
+    "archetype": "Archetype 1 (Organic & Earthy) blended with Archetype 4 (Swiss/Institutional Restraint)",
+    "vibe": "Emotional restraint, cinematic realism, contemplative pacing, philosophical atmosphere, timeless visual storytelling, institutional media language.",
+    "avoid": [
+      "hyper editing",
+      "flashy transitions",
+      "neon cyberpunk",
+      "social media energy",
+      "dopamine editing",
+      "purple/violet gradients",
+      "generic SaaS dashboard grids",
+      "trendy visuals"
+    ]
+  },
+  "typography": {
+    "strategy": "Typography-led — quiet, considered. Mimics criterion collection, MUBI, or an institutional press. Very generous whitespace.",
+    "heading_font": "Cormorant Garamond",
+    "body_font": "IBM Plex Sans",
+    "mono_font": "JetBrains Mono",
+    "scales": {
+      "h1": "text-4xl sm:text-5xl font-light tracking-tight text-charcoal",
+      "h2": "text-2xl sm:text-3xl font-light text-charcoal",
+      "h3": "text-xl sm:text-2xl font-light text-charcoal",
+      "body": "text-sm md:text-base leading-relaxed tracking-wide text-ink-faded",
+      "labels": "text-xs uppercase tracking-[0.2em] text-ink-muted font-medium"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#F4F0EB",
+      "secondary": "#E8E3DD",
+      "tertiary": "#DED9D3"
+    },
+    "text": {
+      "charcoal": "#1A1918",
+      "ink_faded": "#3C3A38",
+      "ink_muted": "#73716D"
+    },
+    "border": {
+      "subtle": "rgba(26, 25, 24, 0.1)",
+      "strong": "rgba(26, 25, 24, 0.3)"
+    },
+    "accents": {
+      "terracotta": "#B08C76",
+      "sage": "#8A968C"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Generous spacing. Use p-8, p-12, p-16 for structural components to let the content breathe.",
+    "grid_system": "Avoid heavy card-based UI. Use 1px subtle borders (border-black/10) that form an open, flat grid structure. Think of a ledger or screenplay interface.",
+    "alignment": "Left-align text, use asymmetrical padding. Prioritize optical alignment over geometric precision."
+  },
+  "ui_components": {
+    "strategy": "Shadcn/UI components heavily customized for JS files (NOT .tsx). Flat, restrained, no drop-shadows.",
+    "buttons": "Flat, sharp edges or max rounded-sm. Ghost or 1px outline. Solid buttons only for primary actions, using Charcoal #1A1918.",
+    "panels": "Cardless or flat solid with 1px border. No drop shadows. No glassmorphism.",
+    "timeline_editor": "Minimalist tracks. Gray/stone clips. Black-frame pauses explicitly visualized as deep charcoal blocks. Uncluttered.",
+    "inputs": "Underline only or 1px minimal box. No glowing rings, just a darkening of the border on focus.",
+    "sliders": "Used for audio/grading levels. Ultra-thin tracks (1px) with sharp, small thumbs."
+  },
+  "motion_and_interactions": {
+    "transitions": "Only fade in, fade out, slow dissolve, crossfade. CSS transitions should target opacity and have 500ms - 1000ms duration (ease-in-out).",
+    "hover": "Text color darkens. Background shifts slightly. No bouncing, scaling, or spring animations.",
+    "loading": "Slow fade or minimalist text spinner/progress bar."
+  },
+  "media_assets": {
+    "instructions_to_main_agent": "Use the images below for dashboard background accents, landing page heroes, or placeholder media in the timeline. Use exact URLs provided. The frontend uses .js files.",
+    "icons_strategy": "Use `lucide-react` with 1px or 1.25px stroke width. No filled icons. Quiet and precise.",
+    "image_urls": [
+      {
+        "category": "hero_texture",
+        "description": "Macro photography of handmade cream paper texture with subtle charcoal ink smudges",
+        "url": "https://static.prod-images.emergentagent.com/jobs/ada71dfb-d933-48e4-8342-e02998ea1886/images/a5c848b718b18ee28a1ce2f8a750a995a805e33495ec20cb527f899def414dae.png"
+      },
+      {
+        "category": "cinematic_still",
+        "description": "Cinematic film still, slow cinema style, extreme wide shot of a solitary figure walking away in a vast foggy landscape",
+        "url": "https://static.prod-images.emergentagent.com/jobs/ada71dfb-d933-48e4-8342-e02998ea1886/images/dd9f794bcf0585db1e3cf89500b022e3c9fcd4bdd57b3540b4687d6f77a6aa93.png"
+      },
+      {
+        "category": "timeline_clip_placeholder_1",
+        "description": "A foggy field with trees (Cinematic b-roll)",
+        "url": "https://images.unsplash.com/photo-1660164963725-2ff555ea1aa1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwyfHxmb2dneSUyMG1pbmltYWxpc3QlMjBuYXR1cmV8ZW58MHx8fHwxNzc4NjgzOTk2fDA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "timeline_clip_placeholder_2",
+        "description": "Silhouette of 2 persons standing on grass field during foggy day",
+        "url": "https://images.unsplash.com/photo-1613940648603-4c27558f8cce?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxmb2dneSUyMG1pbmltYWxpc3QlMjBuYXR1cmV8ZW58MHx8fHwxNzc4NjgzOTk2fDA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "timeline_clip_placeholder_3",
+        "description": "Green trees under white sky during daytime",
+        "url": "https://images.unsplash.com/photo-1614461791492-b761d664b44c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwzfHxmb2dneSUyMG1pbmltYWxpc3QlMjBuYXR1cmV8ZW58MHx8fHwxNzc4NjgzOTk2fDA&ixlib=rb-4.1.0&q=85"
+      }
+    ]
+  },
+  "testing": {
+    "attributes": "All interactive and key informational elements MUST include `data-testid` attribute (e.g., `data-testid=\"timeline-add-clip\"`, `data-testid=\"render-button\"`)."
+  }
+}

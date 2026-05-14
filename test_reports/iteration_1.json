@@ -1,0 +1,54 @@
+{
+  "summary": "Tattvashila end-to-end test (backend + frontend). 18/18 pytest backend tests passed including health, ambient library (6 presets), narration voices, project CRUD, media upload+probe, real OpenAI TTS via EMERGENT_LLM_KEY, full render pipeline (clip+pause+clip with crossfade, builtin room_tone, narration, 640x360@24fps@1500k) completed in ~17s producing a valid MP4 (ffprobe-verified, 640x360), file serving via /api/files/{path}, and renders history. Frontend: landing page renders with all required data-testids; Projects → Editor navigation works; library tabs (clip/narration/ambient), upload, 6 curated ambient presets, timeline pause segment, segment duration/transition controls, right-panel tabs (narration/ambience/grading/render), TTS form reveal, builtin ambience reveal of 6 picks, grading toggles, render width/height/fps inputs, start-render-btn and full render flow all functional. Auto-save indicator transitions to 'Saved'. One real bug: completed renders do not auto-appear in 'Past renders' (asset list is fetched once at mount; needs refetch on render completion).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Editor.jsx / RenderPanel.jsx",
+        "issue": "After a render completes, the new render asset is not refetched into Editor's `assets` state, so `past-render-{id}` and `download-render-{id}` items remain absent until full page reload. RenderPanel.fetchRenders updates history, but the matching asset lookup (assetById) fails because Editor only fetches /api/media once on mount.",
+        "selector": "[data-testid^='past-render-'], [data-testid^='download-render-']",
+        "priority": "MEDIUM"
+      },
+      {
+        "component": "RenderPanel.jsx PRESETS",
+        "issue": "No 640x360 quick preset exists (only 1920x1080@24, 1920x1080@30, 3840x2160@24, 1080x1080@24). Test spec referenced render-preset-640x360-24 but it does not exist. Width/Height/FPS can still be set manually; functional but inconsistent with documented preset testids.",
+        "selector": "[data-testid='render-preset-640x360-24']",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Render completion → Past renders display",
+        "issue": "Editor must refetch /api/media (or at least /api/media?kind=render) when a render job transitions to 'completed' so the new asset is available for RenderPanel's lookup",
+        "affected_selectors": ["[data-testid^='past-render-']", "[data-testid^='download-render-']"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix Editor.jsx to refetch /api/media when a render job transitions to status='completed' (e.g., expose a callback from RenderPanel or refetch inside RenderPanel and pass merged assets up). Verified workaround: refreshing the page makes past-render-{id} and download-render-{id} appear correctly.",
+    "Optional: add a 640x360@24fps preset to RenderPanel.PRESETS so the documented data-testid 'render-preset-640x360-24' exists, or remove that preset reference from the spec."
+  ],
+  "critical_code_review_comments": [
+    "Editor.jsx fetches media once at mount; rendered/new TTS assets won't appear until reload — recommend a lightweight refetch on render completion and after TTS generation success.",
+    "server.py _update_job_sync uses asyncio.run inside a thread; currently unused (progress_cb uses loop.create_task). Safe but dead code — consider removing to avoid future misuse.",
+    "RenderPanel start() does not auto-switch user to past renders or call fetchRenders on first success; relies on the polling interval which is fine, but the asset state staleness is the real defect.",
+    "models.py NarrationConfig.tts_model default is 'tts-1-hd' while spec/test uses 'tts-1'; both work but document default.",
+    "server.py: large file uploads (up to 500MB) are read fully into memory before probing — acceptable for MVP but should stream for production."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py",
+    "/app/backend/tests/__init__.py"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "95%"},
+  "test_credentials": "Not applicable — no auth in this app.",
+  "seed_data_creation": "Test projects (TEST_Contemplative, TEST_RenderFlow, TEST_UITestProject) and uploaded test_clip.mp4 created during testing; all TEST_ projects deleted after run. A render asset and clip asset created during UI tests remain (soft-deleted clip is fine).",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend pytest suite at /app/backend/tests/backend_test.py is fully passing (18/18) including a real TTS call and a real render. Re-run with: pytest /app/backend/tests/backend_test.py -v. Requires /tmp/test_clip.mp4 — create via: ffmpeg -y -f lavfi -i 'color=c=blue:s=320x240:d=3' -f lavfi -i 'sine=frequency=440:duration=3' -c:v libx264 -pix_fmt yuv420p -t 3 -r 24 -c:a aac -shortest /tmp/test_clip.mp4. UI bug to retest: after a render completes via the editor, verify past-render-{id} and download-render-{id} appear WITHOUT reloading.",
+  "rca of the issue": "Editor.jsx loads `/api/media` once in a useEffect keyed on [id, navigate]. RenderPanel polls the render job and updates `history`, but the asset lookup `assetById[h.output_asset_id]` uses `assets` prop from Editor, which never refetches after a render finishes. Fix: trigger a media refetch from Editor when RenderPanel reports completion (or have RenderPanel fetch /api/media?kind=render itself when history changes)."
+}

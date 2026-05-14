@@ -1,0 +1,47 @@
+{
+  "summary": "Iteration-3 stabilisation testing complete. Created /app/backend/tests/test_stabilization.py with 11 new pytest cases covering (a) render-queue dedupe, (b) search TTLCache hit/miss semantics, (c) attribution persistence after /api/retrieval/assemble, and (d) provider retry resilience — ALL 11 PASSED (2m25s). Re-ran iteration-1 regression /app/backend/tests/backend_test.py → 18/18 PASSED (8.75s). Re-ran iteration-2 /app/backend/tests/test_retrieval.py → 12/13 PASSED — single failure was an upstream Pixabay clip returning width=0 in test_search_contemplative_filters (NOT a v0.3 regression; iteration-2 passed because that day's provider data was clean). Frontend Playwright on real preview URL (REACT_APP_BACKEND_URL=https://atmospheric-assembly.preview.emergentagent.com): /, /projects, /editor/711ca1dd… all render; open-retrieval-btn opens retrieval-dialog; search 'Quiet rain on temple stones at dusk' returned 22 ranked clips; selecting 2 clips enabled retrieval-assemble-btn; close dismisses cleanly; ErrorBoundary not triggered at idle. Mobile (414×900): header label switches to 'Retrieve' (Atmospheric retrieval hidden via sm:inline / sm:hidden), document scrollWidth==clientWidth==414 → NO horizontal scroll, retrieval dialog clip grid is single column (all cards x=33, w=348, varying y).",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/retrieval/search", "issue": "Pixabay clip returned with width=0/height=0 occasionally survives the ranker pre-filter. test_retrieval.py asserts width>0 and intermittently fails. Pre-filter in retrieval/ranker.py should drop clips with zero dimensions."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_stabilization.py",
+    "/app/backend/tests/backend_test.py",
+    "/app/backend/tests/test_retrieval.py",
+    "/app/test_reports/pytest/stabilization_results.xml",
+    "/app/test_reports/pytest/regression_results.xml"
+  ],
+  "action_items": [
+    "(Optional, minor) In /app/backend/retrieval/ranker.py _pre_filter, also drop ProviderClip entries where width<=0 or height<=0. Currently a malformed Pixabay record can slip through and cause downstream issues (and breaks the strict width>0 assertion in test_retrieval.py occasionally).",
+    "(Optional) Models.AssembleClipSelection.provider could be tightened to Literal['pexels','pixabay'] for stricter validation (carry-over from iteration_2).",
+    "(Optional) Remove dead _update_job_sync in server.py (carry-over from iteration_1)."
+  ],
+  "critical_code_review_comments": [
+    "TTLCache (utils/cache.py): set() eviction is O(n) via min() — fine for max_items=128 but worth noting if cache grows.",
+    "server.py retrieval_search (line 491): cache key uses .lower() + .strip() on description — good. But narration_text is truncated to 200 chars — two long narrations differing only past char 200 would collide. Unlikely but worth a comment.",
+    "render_service.find_active_render (line 138): query filters status in {queued,rendering}. Race: if first POST inserts job (status=queued) then background task starts (status flips to rendering), and a near-simultaneous second POST sees neither yet, both could pass the check and insert two jobs. Mitigation would be a unique partial index on (project_id, status in {queued,rendering}) in Mongo. In practice the await db.render_jobs.insert_one between check and task-start is non-trivial; we observed ZERO duplicates across the test run, but the dedupe is best-effort, not airtight.",
+    "EditorHeader.jsx (line 50-51): label hiding uses 'hidden sm:inline' and 'sm:hidden' — both labels are always in the DOM (just one display:none). Screen readers will read both. Consider aria-hidden on the inactive variant for accessibility.",
+    "Frontend: /app/frontend/src/lib/log.js is referenced but I didn't verify the production NODE_ENV gating end-to-end (would need a built bundle). Worth a smoke check before release.",
+    "Render dedupe test confirmed: two rapid-fire POSTs on the same project_id returned identical RenderJob.id; renders history showed exactly 1 job; after completion a 3rd POST got a fresh id. Working as specified."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_stabilization.py (NEW)"
+  ],
+  "success_rate": {
+    "backend": "97% — 41/42 across all three suites (stabilization 11/11, backend_test 18/18, retrieval 12/13). The single failure is upstream provider data quality, not a v0.3 regression.",
+    "frontend": "100% on tested flows (landing/projects/editor render, retrieve→search→select flow, mobile responsive label + single-column grid + no horizontal scroll, error boundary not falsely triggered)."
+  },
+  "test_credentials": "N/A — no auth in this app.",
+  "seed_data_creation": "Regenerated /tmp/test_clip.mp4 (320×240, 3s) via apt-installed ffmpeg (/tmp had been cleaned since last iteration; also installed ffmpeg+ffprobe via apt — the imageio_ffmpeg binary is still bundled but no ffprobe sibling). Stabilization test created and cleaned up TEST_RenderDedupe + TEST_Attribution projects. Two assembled Pexels/Pixabay clips remain attached to seed project 711ca1dd-… from the attribution test; manual cleanup may be desired before user demos.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Run: pytest /app/backend/tests/test_stabilization.py -v (≈2.5m, real Claude+Pexels+Pixabay+ffmpeg render). The TTLCache is in-process so a backend restart clears it — re-running these tests immediately after a restart works fine because each test's first call is naturally uncached. Render dedupe test relies on Mongo-level lookup of jobs in {queued,rendering}; a duplicate within ~1ms of the first POST is theoretically possible but was not observed. Frontend tests work on https://atmospheric-assembly.preview.emergentagent.com (NOT the system-default contemplative-cuts URL — check frontend/.env REACT_APP_BACKEND_URL for the current preview host). Mobile responsive label swap is implemented via Tailwind hidden/sm:inline classes on two spans inside open-retrieval-btn. ffmpeg+ffprobe were installed via 'apt-get install -y ffmpeg' — /tmp/test_clip.mp4 must exist before backend_test.py runs.",
+  "rca of the issue": "test_search_contemplative_filters intermittent failure RCA: Pixabay's videos endpoint occasionally returns a hit whose 'medium' or 'large' video variant has width=0/height=0 (a known data-quality quirk of their free tier). retrieval/providers.py _parse_pixabay_hit currently passes those through, and retrieval/ranker.py _pre_filter filters on score/text but not dimensions. Result: a clip with width=0 reaches the API consumer. Mitigation: add `if w <= 0 or h <= 0: continue` in _pre_filter (or in _parse_pixabay_hit). Low priority — does not break the production flow (ffmpeg adaptive-trim will fail on the zero-dim file later, surfaced as a logged warning during /api/retrieval/assemble), but tightening pre-filter prevents that wasted download."
+}

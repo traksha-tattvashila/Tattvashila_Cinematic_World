@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "83d1bf52-c3c7-488c-b38f-bcbbffb98555",
+    "title": "We Were Never Meant to Live Like This",
+    "subtitle": "A degraded-mode contemplative prototype",
+    "description": "45\u201390s essay film built without LLM ranking. Manual cinematic judgment, raw Pexels+Pixabay search, restrained transitions, silent narration placeholders for later voice-over."
+  },
+  "rubric": {
+    "emotional_tone": "observational, restrained, mournful but composed",
+    "pacing": "slow",
+    "environment": "modern urban contrasted with stilled natural openness",
+    "atmosphere": "contemplative remove from contemporary stimulation",
+    "restraint_level": 0.92,
+    "preferred_keywords": [
+      "still",
+      "slow",
+      "wide",
+      "observational",
+      "natural light",
+      "dawn",
+      "dusk",
+      "mist",
+      "calm",
+      "muted",
+      "long take",
+      "documentary"
+    ],
+    "rejected_keywords": [
+      "vlog",
+      "selfie",
+      "tiktok",
+      "fast cut",
+      "hyperlapse",
+      "timelapse",
+      "drone",
+      "neon",
+      "party",
+      "dance",
+      "dancing",
+      "gym",
+      "workout",
+      "celebration",
+      "fireworks",
+      "advertisement",
+      "commercial",
+      "motivational",
+      "happy",
+      "smile",
+      "children",
+      "kids",
+      "baby",
+      "pet",
+      "puppy",
+      "kitten",
+      "wedding",
+      "fashion",
+      "model",
+      "explosion",
+      "gaming",
+      "esports",
+      "anime",
+      "cartoon"
+    ],
+    "search_queries": [
+      "empty city street dawn",
+      "city window night",
+      "subway station people",
+      "people walking street busy",
+      "billboard advertising night",
+      "fog mist city silent",
+      "mountain landscape morning still"
+    ],
+    "rationale": "Hand-crafted rubric for degraded-mode prototype (no LLM)."
+  },
+  "retrieved_at": "2026-05-14T07:31:12.759988+00:00",
+  "rendered_at": "2026-05-14T07:32:48.740594+00:00",
+  "segments": [
+    {
+      "kind": "pause",
+      "duration": 2.0,
+      "start_offset": 0.0,
+      "transition_in": "fade",
+      "asset_id": null
+    },
+    {
+      "kind": "clip",
+      "duration": 9.5,
+      "start_offset": 0.5,
+      "transition_in": "fade",
+      "asset_id": "fb84d357-e0c1-4796-af64-433898ae8b65"
+    },
+    {
+      "kind": "clip",
+      "duration": 9.5,
+      "start_offset": 0.5,
+      "transition_in": "crossfade",
+      "asset_id": "226c419b-4aa0-40ba-80f8-14d0bf455f07"
+    },
+    {
+      "kind": "pause",
+      "duration": 1.5,
+      "start_offset": 0.0,
+      "transition_in": "fade",
+      "asset_id": null
+    },
+    {
+      "kind": "clip",
+      "duration": 8.5,
+      "start_offset": 0.5,
+      "transition_in": "fade",
+      "asset_id": "8d5490b1-0e2a-488e-9129-6f6ab3296ee8"
+    },
+    {
+      "kind": "clip",
+      "duration": 6.5,
+      "start_offset": 0.5,
+      "transition_in": "crossfade",
+      "asset_id": "8be60477-bbd5-4c1a-9071-c63e2c9f9e45"
+    },
+    {
+      "kind": "clip",
+      "duration": 6.5,
+      "start_offset": 0.5,
+      "transition_in": "crossfade",
+      "asset_id": "20e85c6c-9930-4cf1-be87-bba7b9667c4d"
+    },
+    {
+      "kind": "pause",
+      "duration": 1.5,
+      "start_offset": 0.0,
+      "transition_in": "fade",
+      "asset_id": null
+    },
+    {
+      "kind": "clip",
+      "duration": 9.0,
+      "start_offset": 0.5,
+      "transition_in": "dissolve",
+      "asset_id": "8d254616-1cd8-4b38-8b7d-58433cbac269"
+    },
+    {
+      "kind": "clip",
+      "duration": 12.0,
+      "start_offset": 0.5,
+      "transition_in": "crossfade",
+      "asset_id": "6ccdec59-5728-400a-b7bd-8f81fd0a2c64"
+    },
+    {
+      "kind": "pause",
+      "duration": 3.0,
+      "start_offset": 0.0,
+      "transition_in": "fade",
+      "asset_id": null
+    }
+  ],
+  "citations": [
+    {
+      "filename": "basketball, hoop, net.mp4",
+      "provider": "pixabay",
+      "provider_external_id": "208442",
+      "author": "JoshuaWoroniecki",
+      "source_url": "https://pixabay.com/videos/id-208442/",
+      "duration": 15.9,
+      "resolution": "3840x2160"
+    },
+    {
+      "filename": "VINVIVU \u00ae.mp4",
+      "provider": "pexels",
+      "provider_external_id": "32086385",
+      "author": "VINVIVU \u00ae",
+      "source_url": "https://www.pexels.com/video/nighttime-city-skyline-with-illuminated-high-rises-32086385/",
+      "duration": 11.48,
+      "resolution": "1920x1080"
+    },
+    {
+      "filename": "people, walking, underpass.mp4",
+      "provider": "pixabay",
+      "provider_external_id": "197828",
+      "author": "32215527",
+      "source_url": "https://pixabay.com/videos/id-197828/",
+      "duration": 13.1,
+      "resolution": "3840x2160"
+    },
+    {
+      "filename": "market, shopping, busy.mp4",
+      "provider": "pixabay",
+      "provider_external_id": "44860",
+      "author": "FlorenceCdeM",
+      "source_url": "https://pixabay.com/videos/id-44860/",
+      "duration": 10.01,
+      "resolution": "1920x1080"
+    },
+    {
+      "filename": "George Morina.mp4",
+      "provider": "pexels",
+      "provider_external_id": "3360184",
+      "author": "George Morina",
+      "source_url": "https://www.pexels.com/video/electronic-billboard-lighting-the-street-in-london-at-night-3360184/",
+      "duration": 7.7,
+      "resolution": "1920x1080"
+    },
+    {
+      "filename": "statue, jesus, cristo rey.mp4",
+      "provider": "pixabay",
+      "provider_external_id": "260895",
+      "author": "Obsidian_Ardor",
+      "source_url": "https://pixabay.com/videos/id-260895/",
+      "duration": 11.56,
+      "resolution": "3840x2160"
+    },
+    {
+      "filename": "Nikola Toma\u0161i\u0107.mp4",
+      "provider": "pexels",
+      "provider_external_id": "30442222",
+      "author": "Nikola Toma\u0161i\u0107",
+      "source_url": "https://www.pexels.com/video/serene-mountain-view-at-sunrise-30442222/",
+      "duration": 15.04,
+      "resolution": "1920x1080"
+    }
+  ]
+}
