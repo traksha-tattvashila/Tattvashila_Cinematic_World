@@ -64,9 +64,29 @@ temp/
 .tmp/
 cache/
 
-# Test reports and outputs
+# Test reports and render artifacts
 test_reports/prototype/run.log
 test_reports/prototype/*.log
+test_reports/prototype/render_url.txt
+test_reports/prototype/timing_map.json
+test_reports/prototype/selected_clips.json
+test_reports/prototype/provenance.json
+
+# Rendered video outputs (never commit)
+**/*.mp4
+**/*.mov
+**/*.avi
+**/*.webm
+
+# Private keys and certificates
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_rsa.pub
+id_ecdsa
+id_ed25519
+service-account*.json
 
 # System files
 .DS_Store

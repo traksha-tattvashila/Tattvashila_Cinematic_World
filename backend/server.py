@@ -27,6 +27,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 load_dotenv(Path(__file__).resolve().parent / ".env")
 
+from utils.env_check import check_env
+check_env()
+
 import ambient_library
 import narration
 import repositories as repo

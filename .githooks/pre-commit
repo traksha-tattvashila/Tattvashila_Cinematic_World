@@ -1,0 +1,214 @@
+#!/usr/bin/env bash
+# =============================================================================
+# Pre-commit hook — Tattvashila secret & hygiene guard
+#
+# Install once:  bash scripts/install-hooks.sh
+# Skip once:     SKIP_SECRET_SCAN=1 git commit ...
+# =============================================================================
+
+set -euo pipefail
+
+# ── Colour helpers (gracefully degraded when NO_COLOR / dumb terminal) ────────
+if [[ -t 1 ]] && [[ "${NO_COLOR:-}" == "" ]] && [[ "${TERM:-dumb}" != "dumb" ]]; then
+    RED='\033[0;31m'; YELLOW='\033[0;33m'; GREEN='\033[0;32m'
+    CYAN='\033[0;36m'; BOLD='\033[1m'; RESET='\033[0m'
+else
+    RED=''; YELLOW=''; GREEN=''; CYAN=''; BOLD=''; RESET=''
+fi
+
+PASS=0
+FAIL=0
+
+_header()  { printf "\n${BOLD}${CYAN}▶ %s${RESET}\n" "$*"; }
+_ok()      { printf "  ${GREEN}✓${RESET}  %s\n" "$*"; }
+_warn()    { printf "  ${YELLOW}⚠${RESET}  %s\n" "$*"; PASS=$((PASS+1)); }
+_fail()    { printf "  ${RED}✗${RESET}  %s\n" "$*"; FAIL=$((FAIL+1)); }
+_detail()  { printf "      %s\n" "$*"; }
+
+# ── Allow bypass for exceptional cases ───────────────────────────────────────
+if [[ "${SKIP_SECRET_SCAN:-0}" == "1" ]]; then
+    printf "${YELLOW}[pre-commit] SKIP_SECRET_SCAN=1 — checks bypassed${RESET}\n"
+    exit 0
+fi
+
+printf "\n${BOLD}[pre-commit] Running Tattvashila secret & hygiene checks…${RESET}\n"
+
+# =============================================================================
+# SECTION 1 — BLOCKED FILE NAMES
+# Files that must never be committed regardless of content.
+# =============================================================================
+_header "Section 1 — Blocked file names"
+
+BLOCKED_NAME_PATTERNS=(
+    '^\.env$'
+    '\.env\.'
+    '/\.env$'
+    '\.pem$'
+    '\.p12$'
+    '\.pfx$'
+    'id_rsa$'
+    'id_ecdsa$'
+    'id_ed25519$'
+    'service.account.*\.json$'
+    'credentials\.json$'
+    '\.keystore$'
+)
+
+# Collect staged file names
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM 2>/dev/null || true)
+
+if [[ -z "$STAGED_FILES" ]]; then
+    _ok "No staged files"
+else
+    name_blocked=0
+    while IFS= read -r file; do
+        for pattern in "${BLOCKED_NAME_PATTERNS[@]}"; do
+            if echo "$file" | grep -qE "$pattern"; then
+                _fail "Blocked file staged: ${BOLD}$file${RESET}"
+                _detail "This file type must never be committed."
+                _detail "Add it to .gitignore and use .env.example for templates."
+                name_blocked=$((name_blocked+1))
+                break
+            fi
+        done
+    done <<< "$STAGED_FILES"
+
+    if [[ $name_blocked -eq 0 ]]; then
+        _ok "No blocked file names staged"
+    fi
+fi
+
+# =============================================================================
+# SECTION 2 — SECRET CONTENT SCAN
+# Scans the staged diff for patterns that look like real credentials.
+# Only checks ADDED lines (lines beginning with +, excluding +++ header lines).
+# =============================================================================
+_header "Section 2 — Secret content patterns"
+
+# Get the staged diff — only added content, strip diff headers
+STAGED_DIFF=$(git diff --cached --unified=0 2>/dev/null | \
+    grep -E '^\+[^+]' | sed 's/^\+//' || true)
+
+if [[ -z "$STAGED_DIFF" ]]; then
+    _ok "No added content to scan"
+else
+    # Each entry: "LABEL|PATTERN"
+    SECRET_PATTERNS=(
+        "PostgreSQL/Supabase connection string with credentials|postgresql://[^@[:space:]\"']*:[^@[:space:]\"']+@"
+        "MongoDB connection string with credentials|mongodb(\+srv)?://[^@[:space:]\"']*:[^@[:space:]\"']+@"
+        "OpenAI/Emergent API key (sk- prefix)|sk-[a-zA-Z0-9]{20,}"
+        "PEM private key block|-----BEGIN[[:space:]]+(RSA[[:space:]]+)?PRIVATE[[:space:]]+KEY"
+        "JWT token (base64url header eyJ)|eyJ[a-zA-Z0-9_-]{20,}\."
+        "Generic API key assignment (long value)|[A-Za-z_]*(API_KEY|APIKEY|SECRET_KEY|AUTH_TOKEN|ACCESS_TOKEN|PRIVATE_KEY)[A-Za-z_0-9]*[[:space:]]*=[[:space:]]*['\"]?[a-zA-Z0-9+/=_~-]{25,}"
+        "PASSWORD assignment with real value|[A-Za-z_]*PASSWORD[A-Za-z_0-9]*[[:space:]]*=[[:space:]]*['\"]?[a-zA-Z0-9+/=_~@!#$%^&*-]{12,}"
+        "DATABASE_URL with embedded credentials|DATABASE_URL[[:space:]]*=[[:space:]]*(postgresql|postgres|mysql|mongodb)[+a-z]*://[^@[:space:]]{3,}@"
+    )
+
+    pattern_hit=0
+    for entry in "${SECRET_PATTERNS[@]}"; do
+        label="${entry%%|*}"
+        pattern="${entry##*|}"
+        # Filter out lines that look like unfilled placeholders (<angle-bracket> or "your_" values)
+        matches=$(echo "$STAGED_DIFF" | grep -oE "$pattern" | grep -vE '<[^>]+>|your_[a-z]|<username>|<password>|<host>|placeholder|example\.com' | head -3 || true)
+        if [[ -n "$matches" ]]; then
+            _fail "Possible secret detected: ${BOLD}$label${RESET}"
+            # Print masked snippet — show first 6 chars then mask
+            while IFS= read -r match; do
+                masked="${match:0:8}$(printf '*%.0s' {1..12})…"
+                _detail "Pattern match: ${masked}"
+            done <<< "$matches"
+            pattern_hit=$((pattern_hit+1))
+        fi
+    done
+
+    if [[ $pattern_hit -eq 0 ]]; then
+        _ok "No secret patterns detected in staged content"
+    fi
+fi
+
+# =============================================================================
+# SECTION 3 — LARGE FILE WARNING
+# Warns (does not block) when a staged file exceeds 1 MB.
+# Blocks files over 10 MB to prevent accidental large asset commits.
+# =============================================================================
+_header "Section 3 — File size check"
+
+large_warned=0
+large_blocked=0
+
+if [[ -n "${STAGED_FILES:-}" ]]; then
+    while IFS= read -r file; do
+        [[ -f "$file" ]] || continue
+        size=$(wc -c < "$file" 2>/dev/null || echo 0)
+        size_kb=$((size / 1024))
+        size_mb=$((size / 1048576))
+
+        if [[ $size -gt 10485760 ]]; then
+            _fail "File too large to commit: ${BOLD}$file${RESET} (${size_mb} MB)"
+            _detail "Files over 10 MB should use Git LFS or external storage."
+            large_blocked=$((large_blocked+1))
+        elif [[ $size -gt 1048576 ]]; then
+            _warn "Large file staged: ${BOLD}$file${RESET} (${size_mb} MB)"
+            _detail "Consider whether this binary belongs in the repo or external storage."
+            large_warned=$((large_warned+1))
+        fi
+    done <<< "$STAGED_FILES"
+
+    if [[ $large_blocked -eq 0 && $large_warned -eq 0 ]]; then
+        _ok "All staged files within size limits"
+    fi
+fi
+
+# =============================================================================
+# SECTION 4 — RENDER ARTIFACT CHECK
+# Warns if render output files or test logs are staged.
+# =============================================================================
+_header "Section 4 — Render artifact & log check"
+
+ARTIFACT_PATTERNS=(
+    'render_url\.txt$'
+    'run\.log$'
+    'timing_map\.json$'
+    'selected_clips\.json$'
+    '^test_reports/prototype/'
+    'pytest.*\.xml$'
+    '\.mp4$'
+    '\.mov$'
+    '\.avi$'
+)
+
+artifact_hit=0
+if [[ -n "${STAGED_FILES:-}" ]]; then
+    while IFS= read -r file; do
+        for pattern in "${ARTIFACT_PATTERNS[@]}"; do
+            if echo "$file" | grep -qE "$pattern"; then
+                _warn "Render/test artifact staged: ${BOLD}$file${RESET}"
+                _detail "Add this path to .gitignore if it shouldn't be tracked."
+                artifact_hit=$((artifact_hit+1))
+                break
+            fi
+        done
+    done <<< "$STAGED_FILES"
+fi
+
+if [[ $artifact_hit -eq 0 ]]; then
+    _ok "No render artifacts or logs staged"
+fi
+
+# =============================================================================
+# RESULT
+# =============================================================================
+printf "\n${BOLD}────────────────────────────────────────────${RESET}\n"
+
+if [[ $FAIL -gt 0 ]]; then
+    printf "${RED}${BOLD}✗ Commit BLOCKED — %d issue(s) found${RESET}\n\n" "$FAIL"
+    printf "  Fix the issues above, then commit again.\n"
+    printf "  To skip this check in an emergency:  ${CYAN}SKIP_SECRET_SCAN=1 git commit${RESET}\n\n"
+    exit 1
+elif [[ $PASS -gt 0 ]]; then
+    printf "${YELLOW}${BOLD}⚠ Commit allowed with %d warning(s)${RESET}\n\n" "$PASS"
+    exit 0
+else
+    printf "${GREEN}${BOLD}✓ All checks passed${RESET}\n\n"
+    exit 0
+fi
