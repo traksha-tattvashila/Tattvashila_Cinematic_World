@@ -31,9 +31,22 @@ dist/
 dist
 
 # Environment files (comprehensive coverage)
-
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
 *token.json*
 *credentials.json*
+*.secret
+*.secrets
+*.key
 
 # Logs and debug files
 npm-debug.log*
@@ -41,6 +54,19 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 dump.rdb
+*.log
+logs/
+log/
+
+# Temporary and cache files
+tmp/
+temp/
+.tmp/
+cache/
+
+# Test reports and outputs
+test_reports/prototype/run.log
+test_reports/prototype/*.log
 
 # System files
 .DS_Store
