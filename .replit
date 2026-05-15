@@ -4,3 +4,11 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+APP_NAME = "tattvashila"
+CORS_ORIGINS = "*"
+WDS_SOCKET_PORT = "443"
+ENABLE_HEALTH_CHECK = "false"
