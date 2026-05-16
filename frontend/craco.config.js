@@ -64,6 +64,16 @@ webpackConfig.devServer = (devServerConfig) => {
   // Allow Replit's reverse proxy to reach the dev server (any host header accepted).
   devServerConfig.allowedHosts = "all";
 
+  // Proxy /api/* requests to the backend (port 8000) so the browser never
+  // has to cross to a separate Replit subdomain (which isn't publicly exposed).
+  devServerConfig.proxy = {
+    "/api": {
+      target: "http://localhost:8000",
+      changeOrigin: false,
+      secure: false,
+    },
+  };
+
   // Add health check endpoints if enabled
   if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
     const originalSetupMiddlewares = devServerConfig.setupMiddlewares;

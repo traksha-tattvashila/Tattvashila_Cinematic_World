@@ -7,10 +7,9 @@ set -e
 
 # Build the backend URL from the Replit dev domain (port 8000).
 # Pattern: <base>.pike.replit.dev → <base>-8000.pike.replit.dev
-if [ -n "$REPLIT_DEV_DOMAIN" ]; then
-  BACKEND_DOMAIN="${REPLIT_DEV_DOMAIN/.pike.replit.dev/-8000.pike.replit.dev}"
-  export REACT_APP_BACKEND_URL="https://${BACKEND_DOMAIN}"
-fi
+# API calls use relative URLs (/api/*) — the webpack devServer proxy forwards
+# them internally to localhost:8000, so no cross-origin backend URL is needed.
+export REACT_APP_BACKEND_URL=""
 
 # Bind to all interfaces so Replit's reverse proxy can reach the dev server.
 export HOST=0.0.0.0
