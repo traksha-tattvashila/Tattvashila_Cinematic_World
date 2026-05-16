@@ -42,6 +42,10 @@ backend/.env
 backend/.env.*
 frontend/.env
 frontend/.env.*
+# Allow example/template files to be tracked
+!.env.example
+!backend/.env.example
+!frontend/.env.example
 *token.json*
 *credentials.json*
 *.secret
