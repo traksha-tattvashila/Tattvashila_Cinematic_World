@@ -1,218 +1,411 @@
-# Design System
+# Tattvashila Cinematic World — Design System
 
-**Status:** `[SCAFFOLD]`
-
-> This document is the canonical reference for the visual and interaction language
-> of Tattvashila Cinematic World. It covers typography, colour, motion, component
-> patterns, and the values that constrain all of the above.
-> Implementation lives in `frontend/tailwind.config.js` and `frontend/src/index.css`.
-
----
-
-## 1. Design Values
-
-<!-- PLACEHOLDER
-     Authors: State the 3–5 design values that constrain all visual decisions.
-     These must be specific enough to resolve real design disagreements.
-     Known from existing work: restraint, contemplation, breath.
-     Do not list values you cannot defend with a concrete example.
--->
-
-_To be authored by the founding team._
+> This document defines the visual, typographic, spatial, interaction, and readability principles for Tattvashila Cinematic World.
+>
+> The goal of the design system is not stylistic novelty.
+>
+> The goal is calm cinematic usability, readability, long-session comfort, and visual coherence across all devices.
 
 ---
 
-## 2. Colour
+# 1. Design Philosophy
 
-### 2.1 Palette
+Tattvashila Cinematic World should feel:
 
-<!-- PLACEHOLDER
-     Authors: Document the canonical colour palette with exact hex values.
-     Known from PRD: paper-cream palette, soft warm highlights.
-     Fill in the actual values from index.css / tailwind.config.js.
--->
+- contemplative
+- cinematic
+- calm
+- readable
+- grounded
+- emotionally stable
+- low-noise
+- intentional
 
-| Token | Name | Hex | Usage |
-|-------|------|-----|-------|
-| `--color-paper` | Paper cream | _[hex]_ | Primary background |
-| `--color-ink` | Ink | _[hex]_ | Primary text |
-| `--color-warm-highlight` | Warm highlight | _[hex]_ | Accent, active states |
-| _[additional tokens]_ | — | — | — |
+The interface should support cinematic thinking rather than compete for attention.
 
-### 2.2 Colour Constraints
-
-<!-- PLACEHOLDER
-     Authors: What colours may not be used? What contrast ratios are required?
-     Are there colours that are prohibited because they conflict with the
-     contemplative palette? (E.g., saturated primaries, neon accents.)
--->
-
-_To be authored by the founding team._
-
-### 2.3 Dark Mode
-
-<!-- PLACEHOLDER
-     Authors: Is a dark mode planned? What would "contemplative dark mode" mean —
-     it is not simply inverted. If not planned, document the rationale.
--->
-
-_To be authored by the founding team._
+The design system should reduce cognitive fatigue during long creative sessions.
 
 ---
 
-## 3. Typography
+# 2. Core Visual Principles
 
-### 3.1 Typefaces
+## 2.1 Readability Before Aesthetics
 
-| Role | Typeface | Weights used | Notes |
-|------|----------|-------------|-------|
-| Display / headings | Cormorant Garamond | _[to be specified]_ | Serif, contemplative |
-| Body / UI | IBM Plex Sans | _[to be specified]_ | Neutral, legible |
+Readability has higher priority than visual experimentation.
 
-### 3.2 Type Scale
+No stylistic decision should reduce:
 
-<!-- PLACEHOLDER
-     Authors: Document the type scale in use.
-     Are these Tailwind defaults or custom? What is the base size?
-     What tracking/leading values apply to each level?
--->
-
-| Level | Tailwind class | Size | Use case |
-|-------|---------------|------|---------|
-| _[to be defined]_ | — | — | — |
-
-### 3.3 Typography Rules
-
-<!-- PLACEHOLDER
-     Authors: What typographic rules apply throughout the UI?
-     Consider: maximum line length, minimum body size on mobile, use of italics,
-     use of all-caps, letter-spacing conventions.
--->
-
-_To be authored by the founding team._
+- text clarity
+- hierarchy recognition
+- navigation understanding
+- long-session comfort
+- accessibility
 
 ---
 
-## 4. Motion
+## 2.2 Calm Visual Rhythm
 
-### 4.1 Motion Principle
+The interface should feel visually balanced and emotionally quiet.
 
-<!-- PLACEHOLDER
-     Authors: The PRD specifies "slow opacity-only motion". Document what this means:
-     - Which elements animate?
-     - What duration range is acceptable?
-     - What easing functions are used?
-     - What triggers animation?
--->
+Avoid:
 
-Known constraint: **opacity transitions only**. No translate, scale, or rotate animations
-in the UI layer. Duration and easing to be specified.
+- excessive visual density
+- loud gradients
+- hyper-commercial aesthetics
+- overstimulating motion
+- visual clutter
+- unnecessary decoration
 
-_Specifics to be authored by the founding team._
-
-### 4.2 Reduced Motion
-
-<!-- PLACEHOLDER
-     Authors: How does the system respond to `prefers-reduced-motion`?
-     Are opacity transitions themselves disabled, or only supplementary animations?
--->
-
-_To be authored by the founding team._
-
-### 4.3 Prohibited Motion Patterns
-
-<!-- PLACEHOLDER
-     Authors: List animation patterns that are explicitly prohibited.
-     Consider: spring physics, bounce easing, parallax, attention-seeking
-     micro-interactions, loading spinners that suggest urgency.
--->
-
-_To be authored by the founding team._
+Whitespace and breathing room are important parts of the experience.
 
 ---
 
-## 5. Component Patterns
+## 2.3 Cinematic Rather Than Corporate
 
-### 5.1 Component Library
+The interface should feel closer to:
 
-The frontend uses **Shadcn UI** primitives over Tailwind CSS.
-Components are in `frontend/src/components/ui/`.
+- a cinematic studio
+- a contemplative creative workspace
+- a documentary review environment
+- a narrative construction space
 
-<!-- PLACEHOLDER
-     Authors: Document which Shadcn components are used and any customisations
-     applied. Note any components that are prohibited (too visually active for
-     the contemplative aesthetic).
--->
+and not like:
 
-_Component inventory to be authored by the founding team._
-
-### 5.2 Custom Components
-
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| `Timeline` | `frontend/src/components/editor/Timeline.jsx` | Segment sequence editor |
-| `MediaLibrary` | `frontend/src/components/editor/MediaLibrary.jsx` | Asset browser |
-| `RenderPanel` | `frontend/src/components/editor/RenderPanel.jsx` | Render configuration and launch |
-| `GradingPanel` | `frontend/src/components/editor/GradingPanel.jsx` | Visual grading controls |
-| `NarrationPanel` | `frontend/src/components/editor/NarrationPanel.jsx` | TTS and narration upload |
-| `AmbiencePanel` | `frontend/src/components/editor/AmbiencePanel.jsx` | Ambient audio selection |
-| `RetrievalDialog` | `frontend/src/components/editor/RetrievalDialog.jsx` | AI-guided clip retrieval |
-| `RenderProgressView` | `frontend/src/components/editor/RenderProgressView.jsx` | Render stage display |
-
-<!-- PLACEHOLDER
-     Authors: For each component, document: what design values it embodies,
-     any constraints on modification, and any known design debt.
--->
-
-### 5.3 Spacing System
-
-<!-- PLACEHOLDER
-     Authors: Document the spacing scale. Are these Tailwind defaults?
-     Is there a minimum spacing between interactive elements?
-     What padding/margin conventions apply to the editor layout?
--->
-
-_To be authored by the founding team._
+- a growth-hacking SaaS dashboard
+- a dopamine-driven social platform
+- a generic analytics product
 
 ---
 
-## 6. Layout Architecture
+# 3. Typography System
 
-<!-- PLACEHOLDER
-     Authors: Document the macro layout structure:
-     - The Editor page (header, sidebar, main area, panels)
-     - The Projects catalogue
-     - The Landing / onboarding flow
-     How do these adapt to mobile viewports? See mobile-first-ux.md for detail.
--->
+## 3.1 Typography Philosophy
 
-_To be authored by the founding team._
+Typography should support:
 
----
+- calm reading
+- cinematic atmosphere
+- strong hierarchy
+- long-session comfort
+- mobile readability
 
-## 7. Iconography
-
-<!-- PLACEHOLDER
-     Authors: What icon set is used? What is the style guidance (line weight,
-     fill vs. outline, size conventions)? Are custom icons required?
--->
-
-_To be authored by the founding team._
+The system should avoid decorative typography that reduces usability.
 
 ---
 
-## 8. Design Debt and Known Issues
+## 3.2 Typography Roles
 
-<!-- Maintain this section honestly. Remove entries when resolved. -->
+### Interface Typography
 
-| Issue | Location | Priority | Notes |
-|-------|----------|----------|-------|
-| _[to be recorded as found]_ | — | — | — |
+Used for:
+
+- buttons
+- navigation
+- controls
+- metadata
+- panels
+- settings
+
+Should prioritize:
+
+- clarity
+- consistency
+- readability
+- compact stability
 
 ---
 
-## Revision History
+### Cinematic Typography
 
-| Date | Change |
-|------|--------|
-| 2026-05-15 | Initial scaffold created |
+Used for:
+
+- movement titles
+- cinematic headings
+- narrative emphasis
+- poetic transitions
+- reflective presentation
+
+Should feel:
+
+- elegant
+- restrained
+- atmospheric
+- cinematic
+
+without becoming ornamental.
+
+---
+
+## 3.3 Readability Standards
+
+The system should maintain:
+
+- strong contrast
+- comfortable line height
+- adequate spacing
+- mobile-readable font sizes
+- stable text rendering
+
+Avoid:
+
+- tiny text
+- ultra-thin typography
+- low-opacity body text
+- overly compressed spacing
+
+---
+
+# 4. Color Philosophy
+
+## 4.1 Emotional Tone
+
+The color system should feel:
+
+- grounded
+- warm
+- cinematic
+- contemplative
+- restrained
+- emotionally calm
+
+The interface should avoid aggressive saturation and excessive neon contrast.
+
+---
+
+## 4.2 Contrast Standards
+
+The interface must maintain strong readability contrast across:
+
+- text
+- controls
+- panels
+- timelines
+- overlays
+- retrieval cards
+
+Low-contrast text should never be used purely for aesthetic mood.
+
+---
+
+## 4.3 Layer Separation
+
+Panels and surfaces should maintain clear visual hierarchy.
+
+Users should instantly understand:
+
+- foreground
+- background
+- active surfaces
+- secondary surfaces
+- focused states
+
+without visual confusion.
+
+---
+
+# 5. Spatial System
+
+## 5.1 Breathing Room
+
+Spacing should support cognitive clarity.
+
+The interface should avoid cramped layouts and excessive density.
+
+Whitespace is treated as functional design infrastructure.
+
+---
+
+## 5.2 Layout Stability
+
+The interface should avoid sudden layout shifts or unstable spacing behavior.
+
+Consistency improves creative flow.
+
+---
+
+## 5.3 Hierarchical Clarity
+
+Important actions and content should remain visually prioritized.
+
+Users should never struggle to identify:
+
+- primary actions
+- current focus
+- active movement
+- selected assets
+- narrative position
+
+---
+
+# 6. Interaction Design
+
+## 6.1 Restrained Motion
+
+Animations should remain subtle and purposeful.
+
+Motion should support:
+
+- orientation
+- continuity
+- focus transitions
+- cinematic calmness
+
+Avoid:
+
+- flashy transitions
+- excessive bounce effects
+- attention-seeking animations
+- unnecessary motion complexity
+
+---
+
+## 6.2 Predictable Interactions
+
+The interface should behave consistently and predictably.
+
+Unexpected interaction behavior damages creative flow.
+
+---
+
+## 6.3 Emotional Stability
+
+The UI should never feel emotionally aggressive.
+
+The experience should preserve:
+
+- calmness
+- focus
+- rhythm
+- narrative immersion
+
+---
+
+# 7. Timeline Design Principles
+
+## 7.1 Clarity Over Density
+
+The timeline should remain readable and understandable.
+
+Avoid:
+
+- compressed visual chaos
+- tiny controls
+- excessive track density
+- unreadable sequencing structures
+
+---
+
+## 7.2 Movement-Oriented Thinking
+
+The timeline should encourage creators to think in:
+
+- movements
+- pacing
+- transitions
+- emotional progression
+- cinematic continuity
+
+rather than fragmented clip management alone.
+
+---
+
+## 7.3 Device-Adaptive Timelines
+
+Timeline systems should adapt appropriately across:
+
+- mobile
+- tablet
+- desktop
+
+without feeling like compressed desktop software.
+
+---
+
+# 8. Retrieval Interface Principles
+
+## 8.1 Cinematic Discovery
+
+Retrieval interfaces should feel immersive and intentional.
+
+They should encourage:
+
+- emotional exploration
+- atmospheric continuity
+- narrative alignment
+
+rather than infinite-scroll consumption behavior.
+
+---
+
+## 8.2 Focused Selection
+
+The retrieval experience should help creators make thoughtful decisions rather than overwhelm them with volume.
+
+---
+
+# 9. Archive Interface Principles
+
+## 9.1 Semantic Discoverability
+
+Archive interfaces should prioritize:
+
+- meaning
+- emotional relevance
+- contextual grouping
+- cinematic continuity
+
+rather than folder-heavy complexity.
+
+---
+
+## 9.2 Calm Navigation
+
+Archive exploration should feel reflective and stable rather than chaotic or hyper-technical.
+
+---
+
+# 10. Accessibility Philosophy
+
+Accessibility is not a secondary compliance requirement.
+
+Accessibility is part of cinematic clarity.
+
+The system should reduce:
+
+- eye fatigue
+- interaction fatigue
+- cognitive overload
+- navigation friction
+
+across all device categories.
+
+---
+
+# 11. Anti-Patterns
+
+The design system should avoid:
+
+- low-contrast readability
+- clutter-heavy dashboards
+- excessive glassmorphism
+- hyper-commercial aesthetics
+- attention-seeking animation
+- dopamine-driven interaction patterns
+- tiny interaction targets
+- visually noisy interfaces
+- excessive modal stacking
+
+---
+
+# 12. Future Direction
+
+Future visual evolution may include:
+
+- adaptive cinematic themes
+- contextual workspaces
+- emotional pacing visualization
+- immersive archive environments
+- cinematic review modes
+- reflective editing environments
+
+All future visual systems should remain aligned with the principles defined in this document.

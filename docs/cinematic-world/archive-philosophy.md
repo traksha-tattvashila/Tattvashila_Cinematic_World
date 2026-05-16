@@ -1,142 +1,255 @@
-# Archive Philosophy
+# Tattvashila Cinematic World — Archive Philosophy
 
-**Status:** `[SCAFFOLD]`
-
-> This document defines how Tattvashila Cinematic World thinks about the
-> preservation, versioning, and long-term stewardship of films and their
-> associated data. An archive is not a dump — it is a considered act.
-
----
-
-## 1. What an Archive Is (For This System)
-
-<!-- PLACEHOLDER
-     Authors: Define what "archive" means in this context. Is it about:
-     - Institutional preservation?
-     - Personal film history?
-     - Provenance documentation?
-     - Access over time?
-     Be specific about what the system currently stores and what it aspires to.
--->
-
-_To be authored by the founding team._
+> This document defines the archive philosophy for Tattvashila Cinematic World.
+>
+> The cinematic archive is not treated merely as storage infrastructure.
+>
+> It is treated as a living memory system for cinematic perception, retrieval, narrative continuity, and meaningful rediscovery.
 
 ---
 
-## 2. What Is Archived
+# 1. The Archive as Memory
 
-### 2.1 Current Archivable Artefacts
+The archive exists to preserve cinematic memory rather than simply accumulate files.
 
-| Artefact | Where stored | Format | Retention |
-|----------|-------------|--------|-----------|
-| Rendered film (MP4) | Emergent Object Storage | MP4, H.264 | _[to be defined]_ |
-| Render provenance (JSON) | Emergent Object Storage | JSON | _[to be defined]_ |
-| Project metadata | Supabase Postgres | DB rows | _[to be defined]_ |
-| Media assets (clips, audio) | Emergent Object Storage | Various | _[to be defined]_ |
-| Narration audio | Emergent Object Storage | MP3 | _[to be defined]_ |
+Its purpose is to help creators:
 
-### 2.2 What Is Not Archived
+- rediscover meaningful footage
+- preserve emotional continuity
+- maintain narrative context
+- organize cinematic thought
+- build long-term creative memory systems
 
-<!-- PLACEHOLDER
-     Authors: Explicitly list what is intentionally ephemeral —
-     what is discarded after use, and why.
--->
-
-_To be authored by the founding team._
+The archive should feel alive, navigable, and semantically meaningful.
 
 ---
 
-## 3. Preservation Principles
+# 2. Beyond Folder-Based Thinking
 
-<!-- PLACEHOLDER
-     Authors: What obligations does the system have to works it has produced?
-     Consider:
-     - Can a film be deleted by the user? By the system?
-     - What happens to a film if a provider (Emergent, Supabase) shuts down?
-     - Is there a concept of a "master" vs "distribution" copy?
-     - Is bit-rot prevention in scope?
--->
+Traditional folder-heavy organization systems become increasingly limiting at scale.
 
-_To be authored by the founding team._
+Tattvashila Cinematic World should gradually move toward semantic archive intelligence.
 
----
+Discovery should increasingly rely on:
 
-## 4. Versioning
+- emotional relevance
+- atmospheric continuity
+- semantic meaning
+- pacing suitability
+- movement compatibility
+- narrative context
 
-<!-- PLACEHOLDER
-     Authors: Films are re-renderable from project data. What is the policy on:
-     - Storing multiple renders of the same project?
-     - Tracking changes to a project over time?
-     - What constitutes a "version" vs. a "render"?
-     Current system: render history is stored per project (see `/projects/{id}/renders`).
--->
-
-_To be authored by the founding team._
+rather than manual hierarchical storage alone.
 
 ---
 
-## 5. Provenance as Archive
+# 3. Semantic Organization
 
-The system generates a provenance record for every completed render. This record includes:
+Clips should increasingly support semantic understanding through metadata systems.
 
-- `citations` — source attribution for each clip used
-- `rubric` — the cinematic rubric used to guide retrieval
-- `segments` — the full timeline with timecodes and clip IDs
-- `retrieved_at` / `rendered_at` — temporal record
+Potential semantic dimensions may include:
 
-<!-- PLACEHOLDER
-     Authors: How should provenance records be treated archivally?
-     Are they attached to the film itself (embedded metadata)?
-     Are they discoverable by viewers? By institutions?
-     What is their longevity relative to the film?
--->
+- emotional tone
+- environment
+- pacing profile
+- symbolic relevance
+- movement suitability
+- cinematic texture
+- atmospheric continuity
+- narrative function
 
-_Provenance as archive to be authored by the founding team._
-
----
-
-## 6. Access and Shareability
-
-<!-- PLACEHOLDER
-     Authors: What access modes does the archive support?
-     Known from PRD: "Shareable, signed read-only view URL of a completed film."
-     What is the policy on public vs. private archives?
-     Can films be shared with institutions? With the public?
-     Is there an embargo period?
--->
-
-_To be authored by the founding team._
+The goal is contextual discoverability rather than mechanical categorization.
 
 ---
 
-## 7. Deletion and the Right to Be Forgotten
+# 4. Emotional Retrieval
 
-<!-- PLACEHOLDER
-     Authors: What happens when a user deletes a project or a film?
-     Are media assets purged from object storage immediately?
-     Is there a grace period? A soft-delete?
-     How does this interact with provenance records?
--->
+The archive should support emotionally aligned rediscovery.
 
-_To be authored by the founding team._
+Creators should be able to retrieve footage based on:
 
----
+- atmosphere
+- emotional rhythm
+- contemplative tone
+- symbolic resonance
+- environmental feeling
+- narrative continuity
 
-## 8. Long-Term Infrastructure Considerations
-
-<!-- PLACEHOLDER
-     Authors: The archive depends on third-party infrastructure (Emergent Object
-     Storage, Supabase). What is the contingency plan if these services change?
-     Is there a vendor lock-in concern?
-     What would a migration path look like?
--->
-
-_To be authored by the founding team._
+The system should prioritize meaningful retrieval over raw quantity.
 
 ---
 
-## Revision History
+# 5. Atmospheric Continuity
 
-| Date | Change |
-|------|--------|
-| 2026-05-15 | Initial scaffold created |
+The archive should preserve cinematic atmosphere across projects and movements.
+
+Retrieval systems should help creators maintain:
+
+- tonal consistency
+- environmental coherence
+- pacing continuity
+- emotional flow
+- visual harmony
+
+This is especially important for contemplative and documentary-oriented cinema.
+
+---
+
+# 6. Reuse Intelligence
+
+The archive should help creators intelligently reuse footage without losing contextual awareness.
+
+Reuse systems should preserve:
+
+- provenance
+- narrative history
+- usage relationships
+- project associations
+- emotional continuity
+
+The system should support meaningful recombination rather than repetitive duplication.
+
+---
+
+# 7. Context Preservation
+
+A clip is not merely visual media.
+
+Context matters.
+
+The archive should preserve:
+
+- source information
+- retrieval origin
+- movement relationships
+- thematic associations
+- narrative usage
+- emotional classification
+
+This helps maintain cinematic integrity over time.
+
+---
+
+# 8. Retrieval Over Accumulation
+
+The archive should not encourage meaningless accumulation.
+
+The goal is not maximizing stored media volume.
+
+The goal is improving:
+
+- discoverability
+- relevance
+- continuity
+- narrative usefulness
+- cinematic coherence
+
+A smaller meaningful archive is more valuable than a massive unusable archive.
+
+---
+
+# 9. Contemplative Discoverability
+
+Archive exploration should feel reflective rather than chaotic.
+
+The interface should avoid:
+
+- overwhelming visual density
+- infinite-scroll exhaustion
+- folder labyrinths
+- aggressive recommendation systems
+
+Archive browsing should support thoughtful cinematic discovery.
+
+---
+
+# 10. Human-Centered Archive Intelligence
+
+AI may assist with:
+
+- semantic tagging
+- ranking
+- emotional grouping
+- contextual retrieval
+- archive organization
+
+But archive meaning should remain human-guided.
+
+Creators remain responsible for narrative interpretation and significance.
+
+---
+
+# 11. Long-Term Creative Continuity
+
+The archive should support multi-year creative continuity.
+
+The system should help preserve:
+
+- recurring themes
+- environmental memory
+- cinematic language
+- symbolic structures
+- documentary continuity
+- movement evolution
+
+The archive becomes part of the creator’s long-term cinematic consciousness.
+
+---
+
+# 12. Mobile Archive Accessibility
+
+Meaningful archive interaction should remain accessible across devices.
+
+Mobile workflows should support:
+
+- archive exploration
+- semantic discovery
+- emotional retrieval
+- narrative sequencing
+- contextual review
+
+without forcing desktop dependency.
+
+---
+
+# 13. Ethical Archive Principles
+
+Archive systems should preserve:
+
+- attribution
+- provenance
+- contextual integrity
+- responsible sourcing
+- truthful metadata
+
+The system should avoid encouraging deceptive or contextless reuse.
+
+---
+
+# 14. Anti-Patterns
+
+The archive system should avoid becoming:
+
+- a chaotic media dump
+- a folder-management burden
+- an algorithmic recommendation addiction loop
+- a contextless asset warehouse
+- a purely volume-oriented storage system
+
+The goal is meaningful cinematic memory infrastructure.
+
+---
+
+# 15. Future Direction
+
+Future archive systems may include:
+
+- semantic cinematic memory
+- emotional continuity mapping
+- movement-aware retrieval
+- narrative relationship graphs
+- atmospheric archive intelligence
+- contemplative archive navigation
+- contextual rediscovery systems
+
+All future archive evolution should remain aligned with the principles defined in this document.

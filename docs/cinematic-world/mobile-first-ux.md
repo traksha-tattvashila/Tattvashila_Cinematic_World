@@ -1,154 +1,373 @@
-# Mobile-First UX
+# Tattvashila Cinematic World — Device Adaptive UX
 
-**Status:** `[SCAFFOLD]`
-
-> This document defines what mobile-first means for a contemplative cinematic
-> editing environment. This is not conventional mobile-first design — the
-> constraints and values of slow cinema impose specific demands on touch
-> interaction, layout, and performance.
-
----
-
-## 1. Why Mobile-First
-
-<!-- PLACEHOLDER
-     Authors: Explain the specific rationale for mobile-first in this context.
-     Who are the mobile users? (Cultural editors in the field? Essayists on
-     trains? Atelier users reviewing remotely?) What workflows must work on
-     mobile? What workflows are acceptable to defer to desktop?
--->
-
-_To be authored by the founding team._
+> This document defines the device-adaptive UX philosophy for Tattvashila Cinematic World.
+>
+> The system should provide native-feeling cinematic workflows across mobile, tablet, and desktop environments without forcing a single interface model onto every screen size.
+>
+> The goal is not responsive shrinkage.
+>
+> The goal is adaptive cinematic ergonomics.
 
 ---
 
-## 2. Mobile Interaction Philosophy
+# 1. Device-Adaptive Philosophy
 
-<!-- PLACEHOLDER
-     Authors: What does touch-first interaction mean for a slow-cinema tool?
-     Conventional mobile-first optimises for speed and glanceability.
-     This system values stillness and deliberation. How do these reconcile?
-     What interaction patterns are adopted? Which are rejected?
--->
+Tattvashila Cinematic World should provide native-feeling cinematic workflows across mobile, tablet, and desktop environments.
 
-_To be authored by the founding team._
+The goal is not to force a single interface across every device size.
 
----
+The goal is to preserve the same cinematic philosophy while adapting interaction models appropriately for each environment.
 
-## 3. Viewport and Layout Principles
+Mobile should feel mobile-native.
 
-### 3.1 Breakpoints
+Tablet should feel immersive and touch-oriented.
 
-<!-- PLACEHOLDER
-     Authors: Document the canonical breakpoints used in the design system.
-     Are these inherited from Tailwind defaults or custom?
-     Which layouts are mobile-specific vs. shared?
--->
+Desktop should feel expansive and workstation-oriented.
 
-| Breakpoint | Name | Min width | Primary layout |
-|------------|------|-----------|---------------|
-| _[to be defined]_ | — | — | — |
+The system must avoid:
 
-### 3.2 Touch Targets
+- desktop interfaces compressed onto mobile screens
+- mobile simplifications forced onto desktop users
+- generic responsive shrinkage
+- identical layouts across fundamentally different devices
 
-<!-- PLACEHOLDER
-     Authors: Define minimum touch target sizes.
-     For a slow, deliberate UI this may be larger than convention.
-     What is the minimum tap target? What spacing is required between targets?
--->
-
-_To be authored by the founding team._
-
-### 3.3 Timeline on Mobile
-
-<!-- PLACEHOLDER
-     Authors: The timeline is a core component with complex interactions
-     (segment ordering, duration editing, clip assignment). How does this
-     translate to a touch interface? What is the minimum viable timeline
-     experience on a small screen?
--->
-
-_To be authored by the founding team._
+Each device category should expose workflows suited to its strengths while preserving the same underlying cinematic identity and philosophy.
 
 ---
 
-## 4. Performance Constraints
+# 2. Mobile-Centered Accessibility
 
-<!-- PLACEHOLDER
-     Authors: What performance budgets apply to the mobile experience?
-     Consider:
-     - Video preview playback on mobile networks
-     - Render progress monitoring on slow connections
-     - Asset upload from mobile devices
-     - Media library loading with many assets
--->
+Tattvashila Cinematic World should remain deeply usable on mobile devices without requiring creators to depend entirely on desktop workflows.
 
-_To be authored by the founding team._
+The system should allow creators to:
 
----
+- script ideas
+- retrieve footage
+- organize cinematic archives
+- structure narrative movements
+- sequence scenes
+- review pacing
+- build emotional continuity
+- refine cinematic flow
 
-## 5. Mobile-Specific Workflows
+directly from mobile devices.
 
-<!-- PLACEHOLDER
-     Authors: Which workflows are designed specifically for mobile?
-     Which desktop workflows have a degraded-but-functional mobile version?
-     Which workflows are explicitly desktop-only and why?
--->
+The goal is not to replicate professional desktop editing software on a phone.
 
-### 5.1 Mobile-Native (designed for touch)
-
-_To be authored by the founding team._
-
-### 5.2 Adapted (functional but not optimal on mobile)
-
-_To be authored by the founding team._
-
-### 5.3 Desktop-Only (with rationale)
-
-_To be authored by the founding team._
+The goal is to create a focused cinematic thinking environment that remains accessible anywhere.
 
 ---
 
-## 6. Offline and Low-Connectivity Considerations
+# 3. Mobile Is Not a Shrunk Desktop
 
-<!-- PLACEHOLDER
-     Authors: Is any part of the system expected to work offline?
-     What degrades gracefully on a slow connection?
-     What requires connectivity to function at all?
--->
+The mobile experience must never become a compressed version of a desktop interface.
 
-_To be authored by the founding team._
+Interfaces should be intentionally redesigned for:
 
----
+- touch interaction
+- reduced cognitive load
+- focused workflows
+- contextual controls
+- simplified navigation
+- cinematic flow preservation
 
-## 7. Accessibility
-
-<!-- PLACEHOLDER
-     Authors: What accessibility requirements apply?
-     Consider: screen reader support, colour contrast on the paper-cream palette,
-     font size minimums on mobile, reduced-motion support for the slow
-     opacity-only animations.
--->
-
-_To be authored by the founding team._
+Desktop complexity must not be forced onto small screens.
 
 ---
 
-## 8. Anti-Patterns to Avoid
+# 4. UX Principles
 
-<!-- PLACEHOLDER
-     Authors: List mobile UX patterns that are explicitly prohibited in this
-     system because they conflict with the contemplative philosophy.
-     Examples to consider (do not treat as final): swipe-to-dismiss gestures
-     that feel casual, infinite scroll, pull-to-refresh on editorial content.
--->
+## 4.1 One Focused Action at a Time
 
-_To be authored by the founding team._
+Interfaces should avoid exposing too many simultaneous controls.
+
+Users should remain focused on the current creative task.
+
+Examples:
+
+- scripting
+- retrieval
+- sequencing
+- archive browsing
+- pacing review
+
+Each mode should prioritize clarity over density.
 
 ---
 
-## Revision History
+## 4.2 Readability First
 
-| Date | Change |
-|------|--------|
-| 2026-05-15 | Initial scaffold created |
+Readability has higher priority than aesthetic experimentation.
+
+The interface should maintain:
+
+- strong text contrast
+- clear visual hierarchy
+- comfortable spacing
+- large readable typography
+- low eye strain
+- calm visual rhythm
+
+The system should remain comfortable during long creative sessions.
+
+---
+
+## 4.3 Calm Interaction Design
+
+Interactions should feel restrained and stable.
+
+Avoid:
+
+- excessive animation
+- hyper-reactive UI
+- flashing states
+- overstimulating transitions
+- notification-heavy behavior
+
+The interface should preserve contemplative focus.
+
+---
+
+## 4.4 Progressive Complexity
+
+The interface should expose complexity gradually.
+
+Beginner users should not feel overwhelmed.
+
+Advanced controls may exist but should remain contextual and expandable.
+
+---
+
+# 5. Workflow Philosophy
+
+## 5.1 Script-Centered Creation
+
+Narrative and emotional structure should remain central.
+
+The system should encourage creators to think in:
+
+- movements
+- transitions
+- atmosphere
+- emotional pacing
+- symbolic continuity
+
+rather than isolated clips alone.
+
+---
+
+## 5.2 Retrieval as Cinematic Discovery
+
+Retrieval should feel immersive and intentional.
+
+The experience should prioritize:
+
+- emotional alignment
+- visual continuity
+- pacing compatibility
+- atmospheric relevance
+
+rather than generic media search behavior.
+
+---
+
+## 5.3 Timeline Simplicity
+
+The timeline should remain understandable across all devices.
+
+Mobile timelines should prioritize:
+
+- scene-level editing
+- movement structure
+- visual sequencing
+- emotional continuity
+
+Desktop workflows may expose more advanced cinematic control surfaces while preserving clarity and readability.
+
+The system should avoid highly compressed professional editing complexity that damages creative flow.
+
+---
+
+# 6. Touch Interaction Principles
+
+## 6.1 Thumb Ergonomics
+
+Primary interactions should remain reachable and comfortable during one-handed use where possible.
+
+Critical actions should avoid difficult screen positions.
+
+---
+
+## 6.2 Large Interaction Targets
+
+Buttons, timeline handles, and controls should remain comfortably touchable.
+
+Tiny precision-dependent interactions should be avoided on mobile.
+
+---
+
+## 6.3 Gesture Restraint
+
+Gestures should remain simple and discoverable.
+
+Avoid excessive hidden interactions that reduce clarity.
+
+---
+
+# 7. Layout Philosophy
+
+## 7.1 Contextual Interfaces
+
+The interface should expose only the tools relevant to the current task.
+
+Avoid showing every panel simultaneously.
+
+---
+
+## 7.2 Reduced Visual Noise
+
+The interface should preserve visual calm.
+
+Avoid:
+
+- excessive borders
+- layered floating windows
+- cluttered toolbars
+- unnecessary decorative elements
+
+---
+
+## 7.3 Adaptive Rather Than Merely Responsive
+
+Different devices may expose different workflows while preserving the same philosophy.
+
+Mobile, tablet, and desktop may present tools differently without changing the system’s core identity.
+
+---
+
+# 8. Device-Specific Experience Goals
+
+## 8.1 Mobile
+
+Mobile should feel:
+
+- focused
+- accessible
+- intimate
+- distraction-free
+- touch-native
+- lightweight
+
+Mobile is ideal for:
+
+- scripting
+- retrieval
+- sequencing
+- archive exploration
+- pacing review
+- movement construction
+
+---
+
+## 8.2 Tablet
+
+Tablet should feel:
+
+- immersive
+- cinematic
+- visually spacious
+- touch-oriented
+- emotionally fluid
+
+Tablet workflows may emphasize:
+
+- storyboarding
+- cinematic review
+- movement arrangement
+- visual pacing
+- archive browsing
+
+---
+
+## 8.3 Desktop
+
+Desktop should feel:
+
+- expansive
+- stable
+- workstation-oriented
+- composition-focused
+- precision-capable
+
+Desktop workflows may expose:
+
+- advanced timeline systems
+- deeper cinematic controls
+- multi-panel layouts
+- archive management
+- detailed sequencing workflows
+
+without sacrificing calmness or readability.
+
+---
+
+# 9. Performance Philosophy
+
+The platform should remain lightweight and responsive across all device categories.
+
+Performance problems directly damage creative flow.
+
+The system should prioritize:
+
+- smooth navigation
+- responsive interaction
+- stable rendering
+- fast retrieval workflows
+- predictable UI behavior
+
+---
+
+# 10. Accessibility and Comfort
+
+The platform should remain usable during extended creative sessions.
+
+Design decisions should reduce:
+
+- eye fatigue
+- mental fatigue
+- navigation fatigue
+- interaction friction
+
+Accessibility should be treated as part of cinematic clarity rather than a secondary compliance layer.
+
+---
+
+# 11. Anti-Patterns
+
+The UX system should avoid:
+
+- desktop UI compression onto mobile
+- overcrowded interfaces
+- tiny unreadable controls
+- attention-fragmenting layouts
+- notification-heavy systems
+- engagement-driven interaction patterns
+- overstimulating motion design
+- excessive workflow complexity
+
+---
+
+# 12. Future Direction
+
+Future device-adaptive workflows may include:
+
+- gesture-assisted sequencing
+- movement-based story editing
+- immersive archive browsing
+- semantic clip organization
+- emotional pacing visualization
+- mobile-native cinematic assembly
+- contemplative review modes
+- adaptive cinematic workspaces
+
+All future UX decisions should remain aligned with the principles defined in this document.

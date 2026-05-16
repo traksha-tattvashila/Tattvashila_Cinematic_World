@@ -1,189 +1,257 @@
-# Retrieval Principles
+# Tattvashila Cinematic World — Retrieval Principles
 
-**Status:** `[SCAFFOLD]`
-
-> This document defines how Tattvashila Cinematic World approaches the retrieval,
-> evaluation, and selection of media clips. Retrieval is not search — it is a
-> curatorial act guided by cinematic intention.
-
----
-
-## 1. What Retrieval Is
-
-<!-- PLACEHOLDER
-     Authors: Write a precise definition of what "retrieval" means in this system.
-     It is currently: scene analysis → rubric generation → concurrent provider search
-     → LLM ranking → threshold filtering → assembly.
-     What is the intended relationship between the retrieval system and editorial intent?
--->
-
-_To be authored by the founding team._
+> This document defines the retrieval philosophy and retrieval system principles for Tattvashila Cinematic World.
+>
+> Retrieval within this system is not treated as generic stock-media search.
+>
+> Retrieval exists to support cinematic continuity, emotional alignment, narrative construction, and meaningful atmosphere discovery.
 
 ---
 
-## 2. The Retrieval Pipeline (Current)
+# 1. Retrieval as Cinematic Discovery
 
-```
-User intent / project description
-        ↓
-Scene Analyzer (Claude Sonnet 4.5)
-  → cinematic rubric:
-      tone, pacing, environment, atmosphere,
-      restraint_level, search_queries,
-      preferred_keywords, rejected_keywords, rationale
-        ↓
-Concurrent provider search
-  → Pexels Videos API
-  → Pixabay Videos API
-  → [Local archive — future]
-        ↓
-Ranker (Claude Sonnet 4.5)
-  → per-clip score (0–1) + one-line rationale
-  → heuristic pre-filter on rejected_keywords
-  → hard threshold: 0.55 (Contemplative Mode)
-        ↓
-Ranked clip pool → timeline assembly
-```
+Retrieval should feel like cinematic discovery rather than commercial media browsing.
 
-<!-- PLACEHOLDER
-     Authors: Review and correct the above pipeline diagram as the system evolves.
-     Add or remove stages. Document the rationale for each stage.
--->
+The system should help creators discover footage aligned with:
+
+- atmosphere
+- pacing
+- emotional tone
+- environmental continuity
+- symbolic resonance
+- narrative movement
+- visual rhythm
+
+The objective is cinematic usefulness rather than media abundance.
 
 ---
 
-## 3. The Cinematic Rubric
+# 2. Emotional Relevance Over Quantity
 
-The rubric is the core artefact of retrieval. It translates editorial intent into
-parameters that guide search and ranking.
+A smaller set of emotionally aligned footage is more valuable than a massive collection of unrelated clips.
 
-### 3.1 Current Rubric Fields
+The system should prioritize:
 
-| Field | Type | Purpose |
-|-------|------|---------|
-| `tone` | string | Emotional register of the scene |
-| `pacing` | string | Intended tempo / rhythm |
-| `environment` | string | Physical or atmospheric setting |
-| `atmosphere` | string | Textural quality sought |
-| `restraint_level` | string | How conservative the selection should be |
-| `search_queries` | string[] | Provider search terms |
-| `preferred_keywords` | string[] | Tags that boost clip score |
-| `rejected_keywords` | string[] | Tags that trigger pre-filter disqualification |
-| `rationale` | string | Model's explanation of its choices |
+- relevance
+- atmosphere
+- emotional continuity
+- pacing compatibility
+- narrative coherence
 
-### 3.2 Rubric Authorship
-
-<!-- PLACEHOLDER
-     Authors: Who or what may author a rubric?
-     Currently: Claude Sonnet 4.5 only.
-     Future: manual rubric authoring? Partial override?
-     What fields may humans override vs. what must remain AI-generated?
--->
-
-_Rubric authorship policy to be authored by the founding team._
+over retrieval volume.
 
 ---
 
-## 4. Ranking Principles
+# 3. Retrieval Supports Storytelling
 
-### 4.1 The Contemplative Mode Threshold
+Retrieval is not an isolated utility.
 
-The system applies a hard disqualification threshold of **0.55** in Contemplative Mode.
-Clips scoring below this are excluded regardless of query match.
+It is part of the narrative construction process.
 
-<!-- PLACEHOLDER
-     Authors: Document the rationale for 0.55.
-     How was this value determined? What does it guard against?
-     Under what circumstances may it be lowered?
-     Is there a non-Contemplative Mode? What threshold applies?
--->
+The retrieval system should strengthen:
 
-_Threshold rationale to be authored by the founding team._
+- movement transitions
+- emotional progression
+- symbolic continuity
+- pacing rhythm
+- environmental coherence
 
-### 4.2 What AI Ranking May and May Not Do
-
-<!-- PLACEHOLDER
-     Authors: Define the scope and limits of AI involvement in clip selection.
-     Currently: AI ranks; human (or assembly logic) makes final selection.
-     May the AI reject all clips? What happens then?
-     May the AI select a clip the human has explicitly excluded?
--->
-
-_To be authored by the founding team._
-
-### 4.3 Human Override
-
-<!-- PLACEHOLDER
-     Authors: Document the current and intended mechanisms for human editorial
-     override of retrieval results. Can a user reject a ranked clip?
-     Can a user force-include a specific clip? How is this recorded in provenance?
--->
-
-_To be authored by the founding team._
+The goal is meaningful cinematic assembly.
 
 ---
 
-## 5. Provider Principles
+# 4. Atmospheric Continuity
 
-### 5.1 Current Providers
+Retrieved footage should support atmospheric consistency.
 
-| Provider | Role | Diversity consideration |
-|----------|------|------------------------|
-| Pexels | Primary stock source | Western-skewed catalogue |
-| Pixabay | Secondary stock source | Broader amateur/creative commons pool |
-| Local archive | Future | _[to be defined]_ |
+Retrieval systems should evaluate compatibility through:
 
-### 5.2 Provider Diversity and Representation
+- lighting tone
+- environmental texture
+- pacing profile
+- movement suitability
+- emotional resonance
+- visual rhythm
 
-<!-- PLACEHOLDER
-     Authors: What obligations does the system have to the diversity of
-     representation in retrieved footage? Are there known gaps in current
-     providers? Is geographic or cultural diversity a retrieval criterion?
--->
-
-_To be authored by the founding team._
-
-### 5.3 Adding or Removing Providers
-
-<!-- PLACEHOLDER
-     Authors: What criteria must a new provider meet to be added?
-     What would cause an existing provider to be removed?
-     Who makes this decision?
--->
-
-_To be authored by the founding team._
+Atmosphere is part of narrative meaning.
 
 ---
 
-## 6. Retrieval Failure Modes
+# 5. Semantic Retrieval
 
-<!-- PLACEHOLDER
-     Authors: Document known failure modes and how they are handled:
-     - No clips meet the threshold → what happens?
-     - Provider API is unavailable → fallback behaviour?
-     - Rubric generation fails → does assembly proceed?
-     - Clips retrieved but assembly yields unsatisfying result → any recourse?
--->
+Retrieval should increasingly move toward semantic understanding rather than literal keyword matching alone.
 
-_To be authored from operational experience._
+The system may evolve toward retrieval dimensions such as:
 
----
+- contemplative
+- isolated
+- reflective
+- urban silence
+- environmental tension
+- renewal
+- decay
+- movement stillness
+- symbolic transition
 
-## 7. Future Expansion Areas
-
-<!-- PLACEHOLDER
-     Authors: Note retrieval capabilities that are architecturally planned
-     but not yet implemented. Do not make commitments here — note possibilities.
-     Known placeholder from PRD: local archive provider.
--->
-
-- Local / institutional archive as a retrieval provider
-- _[additional future areas to be noted by the team]_
+Semantic retrieval improves cinematic continuity.
 
 ---
 
-## Revision History
+# 6. Retrieval Quality Over Infinite Scroll
 
-| Date | Change |
-|------|--------|
-| 2026-05-15 | Initial scaffold created |
+The retrieval experience should avoid becoming an addictive browsing system.
+
+Avoid:
+
+- endless content feeds
+- attention traps
+- recommendation addiction
+- volume-first interfaces
+
+Retrieval should remain focused, intentional, and creatively supportive.
+
+---
+
+# 7. Human-Guided Retrieval
+
+AI may assist retrieval through:
+
+- ranking
+- semantic grouping
+- emotional classification
+- atmospheric analysis
+- pacing estimation
+
+But the creator remains responsible for cinematic intent and narrative meaning.
+
+The system should support human judgment rather than override it.
+
+---
+
+# 8. Retrieval as Narrative Rhythm
+
+Retrieval decisions affect narrative rhythm.
+
+Footage should not only visually match.
+
+It should rhythmically and emotionally belong within the movement structure of the film.
+
+The system should encourage creators to think about:
+
+- transition flow
+- emotional pacing
+- environmental continuity
+- cinematic breathing space
+
+during retrieval itself.
+
+---
+
+# 9. Retrieval Interfaces
+
+Retrieval interfaces should feel:
+
+- calm
+- cinematic
+- focused
+- exploratory
+- emotionally readable
+
+The interface should avoid:
+
+- clutter-heavy dashboards
+- overstimulating layouts
+- attention fragmentation
+- recommendation overload
+
+---
+
+# 10. Retrieval and Archives
+
+Retrieval and archive systems should remain deeply connected.
+
+The archive should increasingly become retrievable through:
+
+- emotional meaning
+- narrative relationships
+- atmospheric similarity
+- pacing compatibility
+- semantic context
+
+rather than manual searching alone.
+
+---
+
+# 11. Multi-Provider Philosophy
+
+External providers may include:
+
+- Pexels
+- Pixabay
+- future documentary sources
+- future licensed cinematic sources
+- future internal archives
+
+The retrieval layer should preserve a unified cinematic experience regardless of source provider.
+
+Provider fragmentation should not damage workflow continuity.
+
+---
+
+# 12. Ethical Retrieval Principles
+
+Retrieval systems should preserve:
+
+- attribution
+- provenance
+- contextual integrity
+- licensing awareness
+- truthful sourcing
+
+The system should avoid encouraging misleading contextual reuse.
+
+---
+
+# 13. Device-Adaptive Retrieval
+
+Retrieval workflows should remain meaningful across:
+
+- mobile
+- tablet
+- desktop
+
+without reducing cinematic clarity.
+
+Mobile retrieval should feel immersive and focused rather than compressed.
+
+Desktop retrieval may expose deeper filtering and sequencing workflows.
+
+---
+
+# 14. Anti-Patterns
+
+The retrieval system should avoid becoming:
+
+- a stock-media addiction loop
+- an infinite-scroll distraction system
+- a quantity-first recommendation engine
+- a chaotic media browser
+- an algorithmically manipulative feed
+
+The goal is cinematic retrieval infrastructure.
+
+---
+
+# 15. Future Direction
+
+Future retrieval systems may include:
+
+- semantic emotional retrieval
+- atmospheric continuity scoring
+- movement-aware retrieval
+- narrative compatibility systems
+- cinematic rhythm analysis
+- contextual rediscovery
+- contemplative retrieval environments
+
+All future retrieval evolution should remain aligned with the principles defined in this document.

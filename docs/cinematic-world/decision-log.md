@@ -187,6 +187,329 @@ PEXELS_API_KEY, PIXABAY_API_KEY) were treated as compromised.
 
 ---
 
+## Decision: Tattvashila and Traksha Separation
+
+### Summary
+
+Tattvashila remains the parent philosophical ecosystem.
+
+Traksha functions as the digital backbone and infrastructure layer.
+
+Tattvashila Cinematic World remains a specialized cinematic/media infrastructure layer.
+
+---
+
+### Reasoning
+
+Separating ecosystem layers prevents:
+
+- architectural overlap
+- terminology confusion
+- conceptual fragmentation
+- uncontrolled scope expansion
+
+This preserves clarity between:
+
+- philosophy
+- infrastructure
+- cinematic systems
+
+---
+
+### Long-Term Implications
+
+Future contributors and AI agents can work on cinematic systems without unintentionally redefining broader ecosystem architecture.
+
+---
+
+## Decision: Cinematic World Is Not a Generic Video Editor
+
+### Summary
+
+The platform is being developed as cinematic infrastructure rather than a traditional editing application.
+
+---
+
+### Reasoning
+
+The goal is to support:
+
+- cinematic thinking
+- narrative construction
+- contemplative workflows
+- archive intelligence
+- emotional continuity
+- truth-oriented media systems
+
+rather than generic editing complexity.
+
+---
+
+### Long-Term Implications
+
+The product direction remains meaning-centered rather than feature-chaos oriented.
+
+---
+
+## Decision: Device-Adaptive UX Instead of Responsive Shrinkage
+
+### Summary
+
+The platform should provide native-feeling experiences across:
+
+- mobile
+- tablet
+- desktop
+
+instead of compressing desktop interfaces onto smaller screens.
+
+---
+
+### Reasoning
+
+Different devices support different cinematic workflows.
+
+Mobile should feel focused and touch-native.
+
+Tablet should feel immersive.
+
+Desktop should feel expansive and workstation-oriented.
+
+---
+
+### Long-Term Implications
+
+Future UX architecture must remain adaptive rather than purely responsive.
+
+---
+
+## Decision: Readability Before Visual Novelty
+
+### Summary
+
+Readability and long-session comfort have higher priority than stylistic experimentation.
+
+---
+
+### Reasoning
+
+Creative systems fail when interfaces create:
+
+- eye fatigue
+- cognitive overload
+- navigation friction
+- visual instability
+
+The platform should support calm cinematic thinking.
+
+---
+
+### Long-Term Implications
+
+Future UI systems must preserve:
+
+- typography clarity
+- spacing stability
+- visual hierarchy
+- low-noise interfaces
+
+---
+
+## Decision: Semantic Systems Over Folder-Heavy Systems
+
+### Summary
+
+The platform should increasingly evolve toward semantic retrieval and archive intelligence.
+
+---
+
+### Reasoning
+
+Traditional folder-heavy media organization becomes limiting at scale.
+
+Semantic systems improve:
+
+- emotional retrieval
+- contextual discovery
+- narrative continuity
+- cinematic memory
+
+---
+
+### Long-Term Implications
+
+Future archive and retrieval systems should prioritize contextual relationships over mechanical categorization.
+
+---
+
+## Decision: Retrieval Is Narrative Infrastructure
+
+### Summary
+
+Retrieval is treated as part of storytelling rather than isolated stock-media search.
+
+---
+
+### Reasoning
+
+Clip discovery directly affects:
+
+- emotional continuity
+- pacing
+- atmosphere
+- movement transitions
+- cinematic rhythm
+
+Retrieval should strengthen narrative construction.
+
+---
+
+### Long-Term Implications
+
+Future retrieval systems may evolve toward:
+
+- semantic ranking
+- atmospheric continuity scoring
+- movement-aware retrieval
+- emotional compatibility systems
+
+---
+
+## Decision: Calm Interfaces Over Engagement Optimization
+
+### Summary
+
+The platform should avoid dopamine-driven interface patterns.
+
+---
+
+### Reasoning
+
+Human attention should not be treated as a resource to exploit.
+
+The interface should preserve:
+
+- calmness
+- focus
+- contemplative pacing
+- emotional stability
+
+---
+
+### Long-Term Implications
+
+Future UX systems should avoid:
+
+- addictive loops
+- notification-heavy behavior
+- overstimulating interfaces
+- engagement-maximization patterns
+
+---
+
+## Decision: AI Assists Rather Than Replaces
+
+### Summary
+
+AI systems remain assistive rather than authoritative.
+
+---
+
+### Reasoning
+
+AI may support:
+
+- retrieval
+- semantic grouping
+- narration workflows
+- archive intelligence
+
+But cinematic meaning and ethical responsibility remain human-centered.
+
+---
+
+### Long-Term Implications
+
+Future AI systems should preserve:
+
+- transparency
+- creator authorship
+- human intentionality
+- ethical clarity
+
+---
+
+## Decision: Documentation as Source of Truth Infrastructure
+
+### Summary
+
+Documentation is treated as foundational infrastructure rather than secondary reference material.
+
+---
+
+### Reasoning
+
+Future developers and AI agents require stable philosophical and architectural alignment.
+
+The `/docs` system becomes the canonical reference layer.
+
+---
+
+### Long-Term Implications
+
+Future architectural, cinematic, UX, retrieval, and archive decisions should remain aligned with documented principles.
+
+---
+
+## Decision: Truth-Oriented Media Direction
+
+### Summary
+
+The platform should support truthful and contextually responsible cinematic systems.
+
+---
+
+### Reasoning
+
+Media systems increasingly optimize for manipulation and engagement extraction.
+
+Tattvashila Cinematic World should support:
+
+- truthful storytelling
+- documentary integrity
+- contextual preservation
+- ethical cinematic construction
+
+---
+
+### Long-Term Implications
+
+Future systems may evolve toward:
+
+- truth-first documentary infrastructure
+- provenance-aware archives
+- contextual lineage systems
+- ethical retrieval frameworks
+
+---
+
+# Future Decision Entries
+
+Future entries should follow this structure:
+
+```md
+## Decision: [Title]
+
+### Summary
+
+### Reasoning
+
+### Tradeoffs
+
+### Long-Term Implications
+
+### Related Systems
+
 <!-- 
      TEMPLATE FOR NEW ENTRIES — copy and fill in:
 

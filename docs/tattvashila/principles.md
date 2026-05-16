@@ -1,68 +1,155 @@
-# Tattvashila — Operating Principles for Cinematic Work
+# Tattvashila — Operating Principles
 
-**Status:** `[SCAFFOLD]`
-
-> These are the operating principles — derived from Tattvashila philosophy — that
-> govern how the Cinematic World tools are built, maintained, and evolved.
-> Each principle should be a concrete, testable constraint, not an aspiration.
-
----
-
-## How to Write a Principle
-
-A good principle here:
-
-- States what is **always true** or **never done**
-- Is specific enough to resolve a real decision
-- Can be checked against a proposed change ("does this violate principle X?")
-- Has a brief rationale grounding it in Tattvashila values
-
-A bad principle:
-
-- Is vague ("be thoughtful", "prioritise quality")
-- Cannot resolve any real disagreement
-- Duplicates what is already in `source-of-truth.md`
+> This document defines the operational principles relevant to the development of Tattvashila Cinematic World.
+>
+> These principles are intended to guide:
+>
+> - cinematic workflows
+> - interface design
+> - retrieval systems
+> - archive systems
+> - narrative infrastructure
+> - technical architecture
+> - future development direction
+>
+> This is not a complete definition of the broader Tattvashila ecosystem.
 
 ---
 
-## Principles
+# 1. Clarity Over Complexity
 
-<!-- PLACEHOLDER
-     Authors: Number each principle. Give it a short name (2–4 words) and a
-     one-sentence statement. Follow with a brief rationale paragraph.
-     Aim for 6–12 principles that are genuinely in tension with alternatives
-     (i.e., principles that rule something out).
+Systems should remain understandable and maintainable.
 
-     Example structure (do not use as content — replace entirely):
+Complexity should only exist where it meaningfully improves cinematic workflows or long-term system capability.
 
-     ### P1 — [Name]
-     [One sentence statement of the principle.]
+Avoid:
 
-     **Rationale:** [Why this principle exists; what it prevents; what value it upholds.]
-
-     ---
--->
-
-_Principles to be authored by the founding team._
+- unnecessary abstraction
+- fragmented workflows
+- confusing interfaces
+- unstable architectural patterns
 
 ---
 
-## Principle Application
+# 2. Meaning Over Noise
 
-<!-- PLACEHOLDER
-     Authors: Optionally include a short section on how to apply these principles
-     when they conflict with each other, or when a decision falls in a grey area.
-     This section may remain empty until real conflicts have been encountered.
--->
+The platform should support meaningful cinematic construction rather than compulsive media production.
 
-_To be authored from real experience._
+Interfaces and workflows should reduce fragmentation and cognitive overload.
 
 ---
 
-## Revision History
+# 3. Readability First
 
-<!-- Keep entries brief. Format: [Date] — [What changed and why] -->
+Readability has higher priority than stylistic experimentation.
 
-| Date | Change |
-|------|--------|
-| — | Initial scaffold created |
+The platform should preserve:
+
+- strong visual hierarchy
+- calm spacing
+- comfortable typography
+- low-noise interfaces
+- long-session usability
+
+---
+
+# 4. Human-Centered Systems
+
+Technology exists to assist creators rather than replace them.
+
+AI may support:
+
+- retrieval
+- organization
+- semantic grouping
+- narration workflows
+
+But human intentionality remains central.
+
+---
+
+# 5. Semantic Organization
+
+The platform should increasingly evolve toward semantic systems.
+
+Archives and retrieval workflows should prioritize:
+
+- emotional continuity
+- contextual relationships
+- atmospheric grouping
+- narrative relevance
+
+rather than purely mechanical organization.
+
+---
+
+# 6. Calm Interaction Design
+
+Interfaces should remain emotionally stable and contemplative.
+
+Avoid:
+
+- overstimulating motion
+- attention-fragmenting patterns
+- addictive interaction loops
+- notification-heavy workflows
+
+---
+
+# 7. Device-Adaptive Workflows
+
+The system should provide native-feeling workflows across:
+
+- mobile
+- tablet
+- desktop
+
+without forcing identical interfaces across all device categories.
+
+---
+
+# 8. Truthful Media Construction
+
+The platform should support truthful and contextually responsible storytelling.
+
+The system should avoid encouraging:
+
+- manipulation-oriented media
+- deceptive sequencing
+- outrage amplification
+- engagement-first storytelling
+
+---
+
+# 9. Long-Term Continuity
+
+Systems should support long-term cinematic continuity rather than short-term feature accumulation.
+
+Architecture and documentation should evolve intentionally.
+
+---
+
+# 10. Documentation as Infrastructure
+
+Documentation is treated as foundational system infrastructure.
+
+Future developers and AI agents should:
+
+- preserve terminology consistency
+- read source-of-truth.md before major changes
+- document important decisions
+- avoid architectural drift
+
+---
+
+# 11. Future Alignment
+
+All future cinematic systems should remain aligned with:
+
+- contemplative workflows
+- meaningful storytelling
+- calm interfaces
+- semantic retrieval
+- archive intelligence
+- device-adaptive usability
+- truthful media construction
